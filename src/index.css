@@ -9,7 +9,7 @@
 /* Extend Tailwind base layer for global styles */
 @layer base {
     button {
-        @apply bg-[var(--primary-color)] text-[var(--secondary-color)] border-none px-4 py-2 rounded cursor-pointer text-xs;
+        @apply bg-(--primary-color) text-(--secondary-color) border-none px-4 py-2 rounded cursor-pointer text-xs;
     }
 
     button:hover {
