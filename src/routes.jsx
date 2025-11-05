@@ -24,11 +24,11 @@ const routes = [
                 element: <Home />,
             },
             {
-                path: "Login",
+                path: "login",
                 element: <Login />,
             },
             {
-                path: "SignUp",
+                path: "signup",
                 element: <SignUp />,
             },
             {
