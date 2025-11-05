@@ -1,4 +1,10 @@
+import Nav from "../Nav/Nav";
+
 function Header() {
-  return <header></header>;
+    return (
+        <header>
+            <Nav />
+        </header>
+    );
 }
 export default Header;
