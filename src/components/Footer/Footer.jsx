@@ -25,12 +25,10 @@ function Footer() {
 
                 {/* Right Section */}
                 <div className="flex gap-6">
-                    <a href="#" className="text-gray-300 hover:underline">
+                    <p className="text-gray-300 hover:underline">
                         Terms & Conditions
-                    </a>
-                    <a href="#" className="text-gray-300 hover:underline">
-                        Cookies
-                    </a>
+                    </p>
+                    <p className="text-gray-300 hover:underline">Cookies</p>
                 </div>
             </div>
         </div>
