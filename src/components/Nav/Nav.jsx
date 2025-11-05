@@ -4,8 +4,8 @@ import styles from "./Nav.module.css";
 function SiteNav() {
   const navLinks = [
     { label: "Home", url: "/" },
-    { label: "Movies", url: "/Movies" },
-    { label: "SignUp", url: "/SignUp" },
+    // { label: "Movies", url: "/Movies" },
+    // { label: "SignUp", url: "/SignUp" },
     { label: "Login", url: "/Login" },
   ];
   return (
