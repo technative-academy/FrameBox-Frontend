@@ -15,7 +15,7 @@ function Form({ type }) {
                     type="submit"
                     className="bg-red-500 text-black-500 p-4 rounded-md w-24"
                 >
-                    Noo
+                    Submit
                 </button>
             </form>
         </div>
