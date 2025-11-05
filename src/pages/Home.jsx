@@ -3,9 +3,14 @@ import Carousel from '../components/Carousel/Carousel';
 function Home() {
   return (
     <div className="bg-amber-50 min-h-screen">
-      <h1 className="text-red-600 text-3xl text-center py-4">Home Page</h1>
+      <h2 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6 px-4">Trending Now</h2>
       <Carousel />
+      <div>
+        <h2 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6 px-4">My playlist</h2>
+        <Carousel />
+      </div> 
     </div>
+    
   );
 }
 

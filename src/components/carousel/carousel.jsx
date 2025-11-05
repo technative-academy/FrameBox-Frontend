@@ -58,8 +58,6 @@ export default function Carousel() {
 
   return (
     <div className="py-4 sm:py-8">
-      <h2 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6 px-4">Trending Now</h2>
-
       <div
         className="relative group"
         onMouseEnter={() => setIsHovered(true)}
