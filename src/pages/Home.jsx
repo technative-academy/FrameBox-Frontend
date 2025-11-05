@@ -1,3 +1,5 @@
 function Home() {
-  return <div>Home Page</div>;
+  return <div className="bg-green"></div>;
 }
+
+export default Home;
