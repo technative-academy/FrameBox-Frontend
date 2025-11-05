@@ -57,7 +57,7 @@ export default function Carousel() {
   };
 
   return (
-    <div className="py-4 sm:py-8">
+    <div className="py-4 sm:py-8 pb-8 sm:pb-8">
       <div
         className="relative group"
         onMouseEnter={() => setIsHovered(true)}
@@ -82,7 +82,7 @@ export default function Carousel() {
           </button>
         )}
 
-        <div className="overflow-x-auto overflow-y-hidden snap-x snap-mandatory scrollbar-hide sm:overflow-hidden">
+        <div className="overflow-x-auto overflow-y-hidden snap-x snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] sm:overflow-hidden">
           <div
             ref={carouselRef}
             className="flex gap-4 transition-transform duration-300 ease-in-out px-4 sm:px-4"
@@ -111,16 +111,6 @@ export default function Carousel() {
           </div>
         </div>
       </div>
-
-      <style jsx>{`
-        .scrollbar-hide::-webkit-scrollbar {
-          display: none;
-        }
-        .scrollbar-hide {
-          -ms-overflow-style: none;
-          scrollbar-width: none;
-        }
-      `}</style>
     </div>
   );
 }
