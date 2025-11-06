@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react";
 import { movies } from "../../data-test.jsx";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
-export default function Carousel() {
+function Carousel() {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isHovered, setIsHovered] = useState(false);
     const carouselRef = useRef(null);
@@ -59,11 +59,7 @@ export default function Carousel() {
     };
 
     return (
-        <div className="py-4 sm:py-8">
-            <h2 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6 px-4">
-                Trending Now
-            </h2>
-
+        <div className="py-4 sm:py-8 pb-8 sm:pb-8">
             <div
                 className="relative group"
                 onMouseEnter={() => setIsHovered(true)}
@@ -88,7 +84,7 @@ export default function Carousel() {
                     </button>
                 )}
 
-                <div className="overflow-x-auto overflow-y-hidden snap-x snap-mandatory scrollbar-hide sm:overflow-hidden">
+                <div className="overflow-x-auto overflow-y-hidden snap-x snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] sm:overflow-hidden">
                     <div
                         ref={carouselRef}
                         className="flex gap-4 transition-transform duration-300 ease-in-out px-4 sm:px-4"
@@ -102,7 +98,7 @@ export default function Carousel() {
                                     <img
                                         src={movie.img}
                                         alt={movie.title}
-                                        className="w-full h-[400px] sm:h-[450px] object-cover rounded-lg 'aspect-[2/3]'"
+                                        className="w-full h-[400px] sm:h-[450px] object-contain rounded-lg 'aspect-[2/3]'"
                                     />
 
                                     <div className="absolute inset-0 bg-black/0 group-hover/card:bg-black/40 transition-all duration-300 rounded-lg flex items-end p-4 opacity-0 group-hover/card:opacity-100">
@@ -121,16 +117,8 @@ export default function Carousel() {
                     </div>
                 </div>
             </div>
-
-            <style jsx>{`
-                .scrollbar-hide::-webkit-scrollbar {
-                    display: none;
-                }
-                .scrollbar-hide {
-                    -ms-overflow-style: none;
-                    scrollbar-width: none;
-                }
-            `}</style>
         </div>
     );
 }
+
+export default Carousel;

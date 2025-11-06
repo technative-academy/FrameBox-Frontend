@@ -9,7 +9,9 @@
 /* Extend Tailwind base layer for global styles */
 @layer base {
     button {
-        @apply bg-[var(--primary-color)] text-[var(--secondary-color)] border-none px-4 py-2 rounded cursor-pointer text-xs;
+        background-color: var(--primary-color);
+        color: var(--secondary-color);
+        @apply border-none px-4 py-2 rounded cursor-pointer text-xs;
     }
 
     button:hover {
@@ -20,7 +22,6 @@
         @apply scale-95 transition-transform;
     }
 }
-
 /*
 :root {
     --primary-color: #000;
