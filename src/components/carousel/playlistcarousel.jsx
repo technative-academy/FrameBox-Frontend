@@ -1,4 +1,5 @@
 import React, { useState, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import { playlists } from "../../playlist-data.jsx";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
@@ -6,6 +7,7 @@ function Carousel() {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isHovered, setIsHovered] = useState(false);
     const carouselRef = useRef(null);
+    const navigate = useNavigate();
 
     const getItemsPerView = () => {
         if (window.innerWidth < 640) return 1;
@@ -58,6 +60,10 @@ function Carousel() {
         }
     };
 
+    const handlePlaylistClick = (playlistId) => {
+        navigate(`/playlist/${playlistId}`);
+    };
+
     return (
         <div className="py-1 sm:py-2 pb-1 sm:pb-1">
             <div
@@ -94,11 +100,14 @@ function Carousel() {
                                 key={playlist.id}
                                 className="flex-none w-[80vw] sm:w-1/2 md:w-1/3 lg:w-1/5 snap-start first:snap-center last:snap-center"
                             >
-                                <div className="relative group/card cursor-pointer">
+                                <div 
+                                    className="relative group/card cursor-pointer"
+                                    onClick={() => handlePlaylistClick(playlist.id)}
+                                >
                                     <div className="relative">
                                         <img
                                             src={playlist.img}
-                                            alt={playlist.name}
+                                            alt={playlist.playlist_name}
                                             className="w-full aspect-square object-cover rounded-lg"
                                         />
                                     </div>

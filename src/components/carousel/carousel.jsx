@@ -1,10 +1,13 @@
 import React, { useState, useRef } from "react";
 import { movies } from "../../data-test.jsx";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { addMovieToPlaylist, isMovieInPlaylist } from "../../playlistHelpers.jsx";
+import { playlists } from '../../playlist-data.jsx';
 
 function Carousel() {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isHovered, setIsHovered] = useState(false);
+    const [showPlaylistMenu, setShowPlaylistMenu] = useState(null);
     const carouselRef = useRef(null);
 
     const getItemsPerView = () => {
@@ -58,6 +61,12 @@ function Carousel() {
         }
     };
 
+    const handleAddToPlaylist = (movieId, playlistId) => {
+        addMovieToPlaylist(playlistId, movieId);
+        setShowPlaylistMenu(null);
+        // You might want to show a success message here
+    };
+
     return (
         <div className="py-1 sm:py-2 pb-1 sm:pb-1">
             <div
@@ -101,6 +110,39 @@ function Carousel() {
                                             alt={movie.title}
                                             className="w-full h-[400px] sm:h-[450px] object-contain rounded-lg aspect-2/3"
                                         />
+                                        {/* Add to playlist button */}
+                                        <button
+                                            onClick={(e) => {
+                                                e.stopPropagation();
+                                                setShowPlaylistMenu(showPlaylistMenu === movie.id ? null : movie.id);
+                                            }}
+                                            className="absolute top-2 right-2 bg-black/70 hover:bg-black/90 text-white p-2 rounded-full opacity-0 group-hover/card:opacity-100 transition-opacity"
+                                        >
+                                            +
+                                        </button>
+                                        
+                                        {/* Playlist dropdown menu */}
+                                        {showPlaylistMenu === movie.id && (
+                                            <div className="absolute top-12 right-2 bg-white rounded-lg shadow-lg z-20 min-w-[150px]">
+                                                {playlists.map(playlist => (
+                                                    <button
+                                                        key={playlist.id}
+                                                        onClick={(e) => {
+                                                            e.stopPropagation();
+                                                            handleAddToPlaylist(movie.id, playlist.id);
+                                                        }}
+                                                        className={`block w-full text-left px-4 py-2 hover:bg-gray-100 ${
+                                                            isMovieInPlaylist(playlist.id, movie.id) 
+                                                                ? 'text-green-600 font-semibold' 
+                                                                : 'text-gray-800'
+                                                        }`}
+                                                    >
+                                                        {playlist.playlist_name}
+                                                        {isMovieInPlaylist(playlist.id, movie.id) && ' ✓'}
+                                                    </button>
+                                                ))}
+                                            </div>
+                                        )}
                                     </div>
                                     <div className="mt-1 p-1">
                                         <h3 className="text-base sm:text-lg font-bold text-black">
