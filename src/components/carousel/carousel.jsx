@@ -23,8 +23,8 @@ function Carousel() {
 
         if (itemsPerView === 1) {
             // Mobile: scroll to center each card
-            const cardWidth = containerWidth * 0.8;
-            const padding = 16; // px-4 = 16px
+            const cardWidth = containerWidth * 0.8; 
+            const padding = 16;
             const scrollPosition = index * (cardWidth + gap) + padding;
             carouselRef.current.parentElement.scrollTo({
                 left: scrollPosition,
@@ -59,7 +59,7 @@ function Carousel() {
     };
 
     return (
-        <div className="py-4 sm:py-8 pb-8 sm:pb-8">
+        <div className="py-1 sm:py-2 pb-1 sm:pb-1">
             <div
                 className="relative group"
                 onMouseEnter={() => setIsHovered(true)}
@@ -98,15 +98,14 @@ function Carousel() {
                                     <img
                                         src={movie.img}
                                         alt={movie.title}
-                                        className="w-full h-[400px] sm:h-[450px] object-contain rounded-lg 'aspect-[2/3]'"
+                                        className="w-full h-[400px] sm:h-[450px] object-contain rounded-lg aspect-[2/3]"
                                     />
-
-                                    <div className="absolute inset-0 bg-black/0 group-hover/card:bg-black/40 transition-all duration-300 rounded-lg flex items-end p-4 opacity-0 group-hover/card:opacity-100">
-                                        <div className="text-white">
+                                    <div className="absolute inset-0 bg-black/0 group-hover/card:bg-white/40 transition-all duration-300 rounded-lg flex items-end p-4 opacity-0 group-hover/card:opacity-100">
+                                        <div className="text-black">
                                             <h3 className="text-base sm:text-lg font-bold">
                                                 {movie.title}
                                             </h3>
-                                            <p className="text-xs sm:text-sm text-gray-300">
+                                            <p className="text-xs sm:text-sm text-black-300">
                                                 {movie.category}
                                             </p>
                                         </div>
