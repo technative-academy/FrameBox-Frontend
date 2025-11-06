@@ -1,16 +1,61 @@
-# React + Vite
+# 🎬 FrameBox Frontend  
+Built a responsive movie playlist web app inspired by Letterboxd and Spotify, allowing users to sign up, log in, browse films, and create personalized playlists.
+Worked collaboratively with the backend team to develop a React + Tailwind interface, integrate RESTful APIs, manage global state with Context API, and coordinate development using GitHub, Figma, and Notion to deliver a cohesive, full-stack experience.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+---
 
-Currently, two official plugins are available:
+## 🚀 Overview  
+**FrameBox** is a responsive web platform that allows users to **sign up, log in, browse movies, create playlists, and showcase favorites**.  
+Blending **Letterboxd’s movie-tracking concept** with **Spotify’s sleek design**, it delivers an engaging user experience through a powerful **React + Tailwind** frontend integrated with a robust **Node.js backend**.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## 💡 Frontend Contributions  
+- Implemented **responsive layouts** and **dynamic UI components** using **React + Tailwind CSS**.  
+- Integrated **RESTful APIs** with **Axios** for authentication, movie data, and playlist management.  
+- Managed **user sessions and global state** via React Context API.  
+- Collaborated with backend developers to align data models and endpoints.  
+- Contributed to **UI/UX design refinement** based on Figma prototypes.  
+- Ensured consistent **code quality** with ESLint, Prettier, and modular component architecture.  
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## ⚙️ Tech Stack  
+**Frontend:** React, Vite, Tailwind, Axios, React Router  
+**Backend (Integration):** Node.js, Express, MongoDB, JWT  
+**Design & Tools:** Figma, GitHub, Notion, Discord  
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## ✨ Key Features  
+- 🔐 **Authentication** – secure login & signup  
+- 🎞️ **Movie Showcase** – visually rich film gallery  
+- 🎧 **Playlists** – personalized movie collections  
+- 🎨 **Spotify-inspired UI** – dark theme & fluid interactions  
+- 📱 **Fully Responsive** – optimized for desktop and mobile  
+
+---
+
+## 🤝 Team Collaboration  
+Worked in an **agile team environment** with clear role separation:  
+- **Frontend team:** user interface, routing, and integration  
+- **Backend team:** API endpoints, authentication, and database logic  
+- **Collaboration:** GitHub Projects for version control, Notion for documentation, and Discord for stand-ups and code reviews  
+
+---
+
+## 🌐 Deployment  
+- **Frontend:** Vercel  
+- **Backend:** Render / Railway  
+- Configured for seamless API communication via environment variables.  
+
+---
+
+## 📜 License  
+Licensed under the **MIT License**.  
+
+---
+
+## 👥 Team  
+**Technative Academy Development Team**  
+Frontend • Backend • UI/UX • Agile Collaboration 
