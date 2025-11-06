@@ -98,7 +98,7 @@ function Carousel() {
                                     <img
                                         src={movie.img}
                                         alt={movie.title}
-                                        className="w-full h-[400px] sm:h-[450px] object-contain rounded-lg aspect-[2/3]"
+                                        className="w-full h-[400px] sm:h-[450px] object-contain rounded-lg aspect-2/3"
                                     />
                                     <div className="absolute inset-0 bg-black/0 group-hover/card:bg-white/40 transition-all duration-300 rounded-lg flex items-end p-4 opacity-0 group-hover/card:opacity-100">
                                         <div className="text-black">
