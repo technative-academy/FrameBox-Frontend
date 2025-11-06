@@ -117,7 +117,7 @@ function Carousel() {
                                         </h3>
                                     </div>
                                     {/* Hover overlay covering both image and text */}
-                                    <div className="absolute inset-0 bg-gray-500/0 group-hover/card:bg-gray-500/40 transition-all duration-300 rounded-lg opacity-0 group-hover/card:opacity-100"></div>
+                                    <div className="absolute inset-0 bg-gray-500/0 group-hover/card:bg-gray-500/20 transition-all duration-300 rounded-lg opacity-0 group-hover/card:opacity-100"></div>
                                 </div>
                             </div>
                         ))}
