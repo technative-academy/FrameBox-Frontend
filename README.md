@@ -44,14 +44,6 @@ Worked in an **agile team environment** with clear role separation:
 
 ---
 
-## 🧩 Frontend Architecture  
-src/
-├── components/ # Reusable UI elements (Navbar, MovieCard, etc.)
-├── pages/ # Main views (Home, Login, Playlists, Showcase)
-├── services/ # API integration layer
-├── context/ # Global state (Auth, Playlist)
-└── styles/ # Tailwind + custom CSS
-
 ## 🌐 Deployment  
 - **Frontend:** Vercel  
 - **Backend:** Render / Railway  
