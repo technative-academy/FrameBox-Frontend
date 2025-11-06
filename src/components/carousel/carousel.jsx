@@ -116,7 +116,7 @@ function Carousel() {
                                                 e.stopPropagation();
                                                 setShowPlaylistMenu(showPlaylistMenu === movie.id ? null : movie.id);
                                             }}
-                                            className="absolute top-2 right-2 bg-black/70 hover:bg-black/90 text-white p-2 rounded-full opacity-0 group-hover/card:opacity-100 transition-opacity"
+                                            className="absolute top-2 right-2 bg-black/70 hover:bg-black/90 text-white w-8 h-8 flex items-center justify-center rounded-full opacity-0 group-hover/card:opacity-100 transition-opacity"
                                         >
                                             +
                                         </button>
