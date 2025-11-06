@@ -10,7 +10,7 @@ Blending **Letterboxd’s movie-tracking concept** with **Spotify’s sleek desi
 
 ---
 
-## 💡 My Frontend Contributions  
+## 💡 Frontend Contributions  
 - Implemented **responsive layouts** and **dynamic UI components** using **React + Tailwind CSS**.  
 - Integrated **RESTful APIs** with **Axios** for authentication, movie data, and playlist management.  
 - Managed **user sessions and global state** via React Context API.  
