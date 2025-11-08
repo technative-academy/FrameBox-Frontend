@@ -3,6 +3,7 @@ import Login from "./pages/Login";
 import Home from "./pages/Home";
 import SignUp from "./pages/SignUp";
 import Movies from "./pages/Movies";
+import PlaylistDetail from "./pages/Playlist";
 
 const routes = [
     {
@@ -35,7 +36,10 @@ const routes = [
                 path: "movies",
                 element: <Movies />,
             },
-
+            {
+                path: "playlist/:id",
+                element: <PlaylistDetail />,
+            },
             {
                 path: "*",
                 element: (

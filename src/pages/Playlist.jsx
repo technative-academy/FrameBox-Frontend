@@ -21,7 +21,7 @@ function PlaylistDetail() {
       <div className="flex items-center gap-4 p-4">
         <button 
           onClick={() => navigate(-1)}
-          className="p-2 hover:bg-gray-200 rounded-full transition-colors"
+          className="p-2 bg-transparent text-black hover:scale-120 transition-transform rounded-full"
         >
           <ArrowLeft size={24} />
         </button>
