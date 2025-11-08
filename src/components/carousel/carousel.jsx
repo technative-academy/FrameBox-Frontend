@@ -83,7 +83,7 @@ function Carousel() {
         className="flex gap-2 sm:gap-4 overflow-x-hidden scroll-smooth"
       >
         {movies.map((movie) => (
-          <div key={movie.id} className="flex-shrink-0 w-[calc(100%-0.5rem)] sm:w-[calc(50%-0.5rem)] md:w-[calc(33.333%-0.67rem)] lg:w-[calc(25%-0.75rem)] xl:w-[calc(20%-0.8rem)]">
+          <div key={movie.id} className="shrink-0 w-[calc(100%-0.5rem)] sm:w-[calc(50%-0.5rem)] md:w-[calc(33.333%-0.67rem)] lg:w-[calc(25%-0.75rem)] xl:w-[calc(20%-0.8rem)]">
             <MovieCard movie={movie} />
           </div>
         ))}
