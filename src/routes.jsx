@@ -40,6 +40,7 @@ const routes = [
                 path: "playlist/:id",
                 element: <PlaylistDetail />,
             },
+
             {
                 path: "*",
                 element: (

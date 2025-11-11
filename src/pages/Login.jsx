@@ -2,8 +2,7 @@ import Form from "../components/Form/Form";
 
 function Login() {
     return (
-        <div>
-            <h1>Login Page</h1>
+        <div className="flex-1 flex flex-col lg:min-h-full">
             <Form type="login" />
         </div>
     );
