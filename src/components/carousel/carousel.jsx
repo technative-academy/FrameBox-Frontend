@@ -1,8 +1,11 @@
 import React, { useState, useRef } from "react";
 import { movies } from "../../data-test.jsx";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { addMovieToPlaylist, isMovieInPlaylist } from "../../playlistHelpers.jsx";
-import { playlists } from '../../playlist-data.jsx';
+import {
+    addMovieToPlaylist,
+    isMovieInPlaylist,
+} from "../../playlistHelpers.jsx";
+import { playlists } from "../../playlist-data.jsx";
 
 function Carousel() {
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -26,7 +29,7 @@ function Carousel() {
 
         if (itemsPerView === 1) {
             // Mobile: scroll to center each card
-            const cardWidth = containerWidth * 0.8; 
+            const cardWidth = containerWidth * 0.8;
             const padding = 16;
             const scrollPosition = index * (cardWidth + gap) + padding;
             carouselRef.current.parentElement.scrollTo({
@@ -68,7 +71,7 @@ function Carousel() {
     };
 
     return (
-        <div className="py-1 sm:py-2 pb-1 sm:pb-1">
+        <div className=" sm:py-2 pb-1 sm:pb-1">
             <div
                 className="relative group"
                 onMouseEnter={() => setIsHovered(true)}
@@ -114,46 +117,60 @@ function Carousel() {
                                         <button
                                             onClick={(e) => {
                                                 e.stopPropagation();
-                                                setShowPlaylistMenu(showPlaylistMenu === movie.id ? null : movie.id);
+                                                setShowPlaylistMenu(
+                                                    showPlaylistMenu ===
+                                                        movie.id
+                                                        ? null
+                                                        : movie.id
+                                                );
                                             }}
                                             className="absolute top-2 right-2 bg-black/70 hover:bg-black/90 text-white w-8 h-8 flex items-center justify-center rounded-full opacity-0 group-hover/card:opacity-100 transition-opacity"
                                         >
                                             +
                                         </button>
-                                        
+
                                         {/* Playlist dropdown menu */}
                                         {showPlaylistMenu === movie.id && (
                                             <div className="absolute top-12 right-2 bg-white rounded-lg shadow-lg z-20 min-w-[150px]">
-                                                {playlists.map(playlist => (
+                                                {playlists.map((playlist) => (
                                                     <button
                                                         key={playlist.id}
                                                         onClick={(e) => {
                                                             e.stopPropagation();
-                                                            handleAddToPlaylist(movie.id, playlist.id);
+                                                            handleAddToPlaylist(
+                                                                movie.id,
+                                                                playlist.id
+                                                            );
                                                         }}
-                                                        className={`block w-full text-left px-4 py-2 hover:bg-gray-100 ${
-                                                            isMovieInPlaylist(playlist.id, movie.id) 
-                                                                ? 'text-green-600 font-semibold' 
-                                                                : 'text-gray-800'
+                                                        className={`block w-full text-left px-4 py-2 hover:bg-blue ${
+                                                            isMovieInPlaylist(
+                                                                playlist.id,
+                                                                movie.id
+                                                            )
+                                                                ? "text-green-600 font-semibold"
+                                                                : "text-gray-800"
                                                         }`}
                                                     >
                                                         {playlist.playlist_name}
-                                                        {isMovieInPlaylist(playlist.id, movie.id) && ' ✓'}
+                                                        {isMovieInPlaylist(
+                                                            playlist.id,
+                                                            movie.id
+                                                        ) && " ✓"}
                                                     </button>
                                                 ))}
                                             </div>
                                         )}
                                     </div>
-                                    <div className="mt-1 p-1">
+                                    <div className="md:mt-5  p-1">
                                         <h3 className="text-base sm:text-lg font-bold text-black">
                                             {movie.title}
                                         </h3>
-                                        <p className="text-xs sm:text-sm text-gray-600">
+                                        <p className="text-3xl sm:text-sm text-gray-600">
                                             {movie.category}
                                         </p>
                                     </div>
                                     {/* Hover overlay covering both image and text */}
-                                    <div className="absolute inset-0 bg-gray-500/0 group-hover/card:bg-gray-200/20 transition-all duration-300 rounded-lg opacity-0 group-hover/card:opacity-100"></div>
+                                    <div className="absolute inset-0 bg-gray-500/0  transition-all duration-300 rounded-lg opacity-0 group-hover/card:opacity-100"></div>
                                 </div>
                             </div>
                         ))}
