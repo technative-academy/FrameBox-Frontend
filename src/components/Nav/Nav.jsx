@@ -10,8 +10,8 @@ function SiteNav({ type }) {
             : { label: "SignUp", url: "/SignUp" },
     ];
     return (
-        <div className={styles.wrapper}>
-            <nav className={styles.links}>
+        <div className="p-4 flex justify-center items-center bg-amber-100 shadow-[0px_7px_29px_0px_rgba(100,100,111,0.2)] ">
+            <nav className="flex gap-6">
                 {navLinks.map((navLink) => (
                     <NavLink
                         key={navLink.url}
