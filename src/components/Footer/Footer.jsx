@@ -1,6 +1,6 @@
 function Footer() {
     return (
-        <div className="bg-[#282828] text-gray-300 p-8">
+        <div className="bg-[#000000] text-gray-300 p-8">
             <div className="flex justify-between items-end max-w-7xl mx-auto">
                 {/* Left Section */}
                 <div className="flex flex-col">

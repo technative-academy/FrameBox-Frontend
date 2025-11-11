@@ -4,7 +4,7 @@ import MainContent from "../MainContent/MainContent";
 
 function Root() {
     return (
-        <div>
+        <div className="min-h-screen flex flex-col">
             <Header />
             <MainContent />
             <Footer />
