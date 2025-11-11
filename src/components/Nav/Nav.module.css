@@ -1,26 +1,12 @@
-.wrapper {
-  padding: 1rem;
-  border: 1px solid lightgray;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgb(255, 255, 255);
-  color: rgb(0, 0, 0);
-}
-
-.links {
-  display: flex;
-}
-
 .activeLink,
 .inactiveLink {
-  padding: 0 2rem;
+    padding: 0 2rem;
 }
 
 .activeLink {
-  color: #000;
+    color: #b92323;
 }
 
 .inactiveLink {
-  color: #666;
+    color: #666;
 }
