@@ -1,6 +1,11 @@
-import { useState, useRef, useEffect } from 'react';
-import { movies } from '../../data-test.jsx';
-import MovieCard from '../MovieCard/MovieCard.jsx';
+import React, { useState, useRef } from "react";
+import { movies } from "../../data-test.jsx";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import {
+    addMovieToPlaylist,
+    isMovieInPlaylist,
+} from "../../playlistHelpers.jsx";
+import { playlists } from "../../playlist-data.jsx";
 
 function Carousel() {
   const [currentIndex, setCurrentIndex] = useState(0);
