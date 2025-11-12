@@ -1,4 +1,4 @@
- import React, { useState, useRef } from "react";
+import React, { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { playlists } from "../../playlist-data.jsx";
 import { ChevronLeft, ChevronRight } from "lucide-react";
@@ -25,7 +25,7 @@ function Carousel() {
 
         if (itemsPerView === 1) {
             // Mobile: scroll to center each card
-            const cardWidth = containerWidth * 0.8; 
+            const cardWidth = containerWidth * 0.8;
             const padding = 16;
             const scrollPosition = index * (cardWidth + gap) + padding;
             carouselRef.current.parentElement.scrollTo({
@@ -90,7 +90,7 @@ function Carousel() {
                     </button>
                 )}
 
-                <div className="overflow-x-auto overflow-y-hidden snap-x snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] sm:overflow-hidden">
+                <div className="overflow-x-auto overflow-y-hidden snap-x snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] sm:overflow-hidden bg-violet-800">
                     <div
                         ref={carouselRef}
                         className="flex gap-4 transition-transform duration-300 ease-in-out px-4 sm:px-4"
@@ -100,9 +100,11 @@ function Carousel() {
                                 key={playlist.id}
                                 className="flex-none w-[80vw] sm:w-1/2 md:w-1/3 lg:w-1/5 snap-start first:snap-center last:snap-center"
                             >
-                                <div 
+                                <div
                                     className="relative group/card cursor-pointer"
-                                    onClick={() => handlePlaylistClick(playlist.id)}
+                                    onClick={() =>
+                                        handlePlaylistClick(playlist.id)
+                                    }
                                 >
                                     <div className="relative">
                                         <img
