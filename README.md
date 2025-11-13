@@ -25,7 +25,7 @@ Blending **Letterboxd’s movie-tracking concept** with **Spotify’s sleek desi
 
 ## ⚙️ Tech Stack
 
-**Frontend:** React, Vite, Tailwind, Axios, React Router  
+**Frontend:** React, Vite, Tailwind, Redux Toolkit, Axios, React Router  
 **Backend (Integration):** Node.js, Express, MongoDB, JWT  
 **Design & Tools:** Figma, GitHub, Notion, Discord
 
