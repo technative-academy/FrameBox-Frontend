@@ -1,14 +1,14 @@
-import React, { useState, useRef, useEffect } from "react";
-import { movies } from "../../data-test.jsx";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import {
-    addMovieToPlaylist,
-    isMovieInPlaylist,
-} from "../../playlistHelpers.jsx";
-import { playlists } from "../../playlist-data.jsx";
+import { useState, useRef, useEffect } from "react";
+
 import MovieCard from "../MovieCard/MovieCard.jsx";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchMovies } from "../../slices/moviesAPISlice.js";
 
 function Carousel() {
+    const dispatch = useDispatch();
+    const movies = useSelector((state) => state.movies.items);
+    const status = useSelector((state) => state.movies.status);
+
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isHovered, setIsHovered] = useState(false);
     const carouselRef = useRef(null);
@@ -44,6 +44,12 @@ function Carousel() {
         setCurrentIndex(prevIndex);
         scrollToIndex(prevIndex);
     };
+
+    useEffect(() => {
+        if (status === "idle") {
+            dispatch(fetchMovies());
+        }
+    }, [dispatch, status]);
 
     useEffect(() => {
         const handleResize = () => {
