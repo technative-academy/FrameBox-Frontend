@@ -1,11 +1,9 @@
-// src/slices/playlistSlice.js
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 // Async thunk to fetch playlists
 export const fetchPlaylists = createAsyncThunk(
     "playlists/fetchPlaylists",
     async () => {
-        // Example fetch — replace with your actual API or data source
         const response = await fetch("/api/playlists");
         const data = await response.json();
         return data;
@@ -15,8 +13,8 @@ export const fetchPlaylists = createAsyncThunk(
 const playlistSlice = createSlice({
     name: "playlists",
     initialState: {
-        items: [], // ✅ must exist
-        status: "idle", // ✅ must exist
+        items: [],
+        status: "idle",
     },
     reducers: {},
     extraReducers: (builder) => {
