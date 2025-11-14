@@ -1,12 +1,52 @@
+* {
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.menu.visible {
+    transform: translateX(0);
+}
+
+.menu.hidden {
+    transform: translateX(100%);
+}
+
+/* Link styling */
 .activeLink,
 .inactiveLink {
-    padding: 0 2rem;
+    font-size: 1.2rem;
+    color: #ab0f0f;
+    text-decoration: none;
+    transition: color 0.3s;
 }
 
 .activeLink {
-    color: #b92323;
+    font-weight: bold;
+    color: #000000;
 }
 
-.inactiveLink {
-    color: #666;
+.inactiveLink:hover {
+    color: #000000;
+}
+
+/* Burger animations */
+.burger-bar.clicked:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 6px);
+    transition: all 0.3s ease-in-out;
+}
+
+.burger-bar.clicked:nth-child(2) {
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+}
+
+.burger-bar.clicked:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -6px);
+    transition: all 0.3s ease-in-out;
+}
+
+.burger-bar.unclicked {
+    transform: rotate(0) translate(0);
+    opacity: 1;
+    transition: all 0.3s ease-in-out;
 }
