@@ -1,13 +1,25 @@
-import React, { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { playlists } from "../../playlist-data.jsx";
+// import { playlists } from "../../playlist-data.jsx";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchPlaylists } from "../../slices/playlistSlice";
 
 function Carousel() {
+    const dispatch = useDispatch();
+    const playlists = useSelector((state) => state.playlists.items);
+    const status = useSelector((state) => state.playlists.status);
+
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isHovered, setIsHovered] = useState(false);
     const carouselRef = useRef(null);
     const navigate = useNavigate();
+
+    useEffect(() => {
+        if (status === "idle") {
+            dispatch(fetchPlaylists());
+        }
+    }, [dispatch, status]);
 
     const getItemsPerView = () => {
         if (window.innerWidth < 640) return 1;
