@@ -7,7 +7,7 @@ const API_URL = import.meta.env.VITE_API_URL;
 const makeApiRequest = async (url, options = {}) => {
     options.headers = options.headers || {};
     // Include credentials for cross-origin requests
-    options.credentials = "include";
+    // options.credentials = "include";
     options.headers["Content-Type"] = "application/json";
 
     let accessToken = authService.getAccessToken();
