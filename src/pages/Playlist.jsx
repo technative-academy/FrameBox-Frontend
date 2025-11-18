@@ -1,70 +1,82 @@
-import React from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import { playlists } from '../playlist-data.jsx';
-import { getMoviesForPlaylist } from '../playlistHelpers.jsx';
-import { ArrowLeft } from 'lucide-react';
+import React from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { playlists } from "../playlist-data.jsx";
+import { getMoviesForPlaylist } from "../playlistHelpers.jsx";
+import { ArrowLeft } from "lucide-react";
 
 function PlaylistDetail() {
-  const { id } = useParams();
-  const navigate = useNavigate();
-  
-  const playlist = playlists.find(p => p.id === parseInt(id));
-  const playlistMovies = getMoviesForPlaylist(parseInt(id));
+    // TODO : Fetch playlist data from Redux store instead of static import
+    // TODO : Add user infomtion to show only user's playlists
+    const { id } = useParams();
+    const navigate = useNavigate();
 
-  if (!playlist) {
-    return <div>Playlist not found</div>;
-  }
+    const playlist = playlists.find((p) => p.id === parseInt(id));
+    const playlistMovies = getMoviesForPlaylist(parseInt(id));
 
-  return (
-    <div className="bg-amber-50 min-h-screen">
-      {/* Header */}
-      <div className="flex items-center gap-4 p-4">
-        <button 
-          onClick={() => navigate(-1)}
-          className="p-2 bg-transparent text-black hover:scale-120 transition-transform rounded-full"
-        >
-          <ArrowLeft size={24} />
-        </button>
-        <h1 className="text-3xl font-bold">{playlist.playlist_name}</h1>
-      </div>
+    if (!playlist) {
+        return <div>Playlist not found</div>;
+    }
 
-      {/* Playlist Cover and Info */}
-      <div className="flex flex-col md:flex-row gap-6 p-4">
-        <img 
-          src={playlist.img} 
-          alt={playlist.playlist_name}
-          className="w-64 h-64 object-cover rounded-lg"
-        />
-        <div className="flex flex-col justify-end">
-          <h2 className="text-5xl font-bold mb-2">{playlist.playlist_name}</h2>
-          <p className="text-gray-600">{playlistMovies.length} movies</p>
-        </div>
-      </div>
-
-      {/* Movies List */}
-      <div className="p-4">
-        <h3 className="text-2xl font-bold mb-4">Movies in this playlist</h3>
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
-          {playlistMovies.map((movie) => (
-            <div key={movie.id} className="group cursor-pointer">
-              <div className="relative">
-                <img
-                  src={movie.img}
-                  alt={movie.title}
-                  className="w-full aspect-2/3 object-cover rounded-lg"
-                />
-                <div className="absolute inset-0 bg-gray-500/0 group-hover:bg-gray-500/40 transition-all duration-300 rounded-lg opacity-0 group-hover:opacity-100"></div>
-              </div>
-              <div className="mt-2">
-                <h4 className="font-semibold text-sm">{movie.title}</h4>
-                <p className="text-xs text-gray-600">{movie.category}</p>
-              </div>
+    return (
+        <div className="bg-amber-50 min-h-screen">
+            {/* Header */}
+            <div className="flex items-center gap-4 p-4">
+                <button
+                    onClick={() => navigate(-1)}
+                    className="p-2 bg-transparent text-black hover:scale-120 transition-transform rounded-full"
+                >
+                    <ArrowLeft size={24} />
+                </button>
+                <h1 className="text-3xl font-bold">{playlist.playlist_name}</h1>
             </div>
-          ))}
+
+            {/* Playlist Cover and Info */}
+            <div className="flex flex-col md:flex-row gap-6 p-4">
+                <img
+                    src={playlist.img}
+                    alt={playlist.playlist_name}
+                    className="w-64 h-64 object-cover rounded-lg"
+                />
+                <div className="flex flex-col justify-end">
+                    <h2 className="text-5xl font-bold mb-2">
+                        {playlist.playlist_name}
+                    </h2>
+                    <p className="text-gray-600">
+                        {playlistMovies.length} movies
+                    </p>
+                </div>
+            </div>
+
+            {/* Movies List */}
+            <div className="p-4">
+                <h3 className="text-2xl font-bold mb-4">
+                    Movies in this playlist
+                </h3>
+                <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                    {playlistMovies.map((movie) => (
+                        <div key={movie.id} className="group cursor-pointer">
+                            <div className="relative">
+                                <img
+                                    src={movie.img}
+                                    alt={movie.title}
+                                    className="w-full aspect-2/3 object-cover rounded-lg"
+                                />
+                                <div className="absolute inset-0 bg-gray-500/0 group-hover:bg-gray-500/40 transition-all duration-300 rounded-lg opacity-0 group-hover:opacity-100"></div>
+                            </div>
+                            <div className="mt-2">
+                                <h4 className="font-semibold text-sm">
+                                    {movie.title}
+                                </h4>
+                                <p className="text-xs text-gray-600">
+                                    {movie.category}
+                                </p>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  );
+    );
 }
 
 export default PlaylistDetail;
