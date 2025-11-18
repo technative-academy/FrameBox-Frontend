@@ -30,7 +30,7 @@ function PlaylistDetail() {
     // Handle loading and error states
     if (status === "loading") {
         return (
-            <div className="flex items-center justify-center h-screen text-xl">
+            <div className="flex items-center justify-center h-auto mt-5 text-xl">
                 Loading playlist...
             </div>
         );
@@ -38,7 +38,7 @@ function PlaylistDetail() {
 
     if (status === "failed") {
         return (
-            <div className="flex items-center justify-center h-screen text-red-600 text-xl">
+            <div className="flex items-center justify-center h-auto mt-5  text-red-600 text-xl">
                 Failed to load playlists: {error}
             </div>
         );
@@ -46,7 +46,7 @@ function PlaylistDetail() {
 
     if (!playlist) {
         return (
-            <div className="flex items-center justify-center h-screen text-xl">
+            <div className="flex items-center justify-center h-auto mt-10 text-xl">
                 Playlist not found
             </div>
         );
