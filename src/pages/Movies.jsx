@@ -1,13 +1,25 @@
-import { useState } from "react";
-import { movies } from "../data-test.jsx";
+import { useState, useRef, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchMovies } from "../slices/moviesAPISlice.js";
+
 import MovieCard from "../components/MovieCard/MovieCard.jsx";
 
 function Movies() {
     const [searchQuery, setSearchQuery] = useState("");
 
+    const dispatch = useDispatch();
+    const movies = useSelector((state) => state.movies.items);
+    const status = useSelector((state) => state.movies.status);
+
     const filteredMovies = movies.filter((movie) =>
         movie.title.toLowerCase().includes(searchQuery.toLowerCase())
     );
+
+    useEffect(() => {
+        if (status === "idle") {
+            dispatch(fetchMovies());
+        }
+    }, [dispatch, status]);
 
     return (
         <div className="bg-amber-50 min-h-screen pb-16">
