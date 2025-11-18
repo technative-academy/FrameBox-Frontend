@@ -4,8 +4,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 export const fetchPlaylists = createAsyncThunk(
     "playlists/fetchPlaylists",
     async () => {
-        const response = await fetch("/api/playlists");
-        const data = await response.json();
+        const data = await makeApiRequest("playlists");
         return data;
     }
 );
