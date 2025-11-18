@@ -5,7 +5,6 @@ import moviesReducer from "./slices/moviesAPISlice";
 import playlistReducer from "./slices/playlistSlice";
 import usersReducer from "./slices/usersSlice";
 import toastReducer from "./slices/toastSlice";
-import { playlists } from "./playlist-data";
 
 const store = configureStore({
     reducer: {
