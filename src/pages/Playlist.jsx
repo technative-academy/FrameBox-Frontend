@@ -1,20 +1,55 @@
-import React from "react";
+import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { playlists } from "../playlist-data.jsx";
-import { getMoviesForPlaylist } from "../playlistHelpers.jsx";
+import { useDispatch, useSelector } from "react-redux";
 import { ArrowLeft } from "lucide-react";
+import { fetchPlaylists } from "../slices/playlistSlice";
+import { getMoviesForPlaylist } from "../playlistHelpers.jsx";
 
 function PlaylistDetail() {
-    // TODO : Fetch playlist data from Redux store instead of static import
-    // TODO : Add user infomtion to show only user's playlists
+    const dispatch = useDispatch();
+    const playlists = useSelector((state) => state.playlists.items);
+    const status = useSelector((state) => state.playlists.status);
+    const error = useSelector((state) => state.playlists.error);
+
+    //  Fetch playlists from API if not loaded
+    useEffect(() => {
+        if (status === "idle") {
+            dispatch(fetchPlaylists());
+        }
+    }, [dispatch, status]);
+
     const { id } = useParams();
     const navigate = useNavigate();
 
+    // Find playlist by ID from Redux store
     const playlist = playlists.find((p) => p.id === parseInt(id));
+
+    // Fetch related movies dynamically
     const playlistMovies = getMoviesForPlaylist(parseInt(id));
 
+    // Handle loading and error states
+    if (status === "loading") {
+        return (
+            <div className="flex items-center justify-center h-screen text-xl">
+                Loading playlist...
+            </div>
+        );
+    }
+
+    if (status === "failed") {
+        return (
+            <div className="flex items-center justify-center h-screen text-red-600 text-xl">
+                Failed to load playlists: {error}
+            </div>
+        );
+    }
+
     if (!playlist) {
-        return <div>Playlist not found</div>;
+        return (
+            <div className="flex items-center justify-center h-screen text-xl">
+                Playlist not found
+            </div>
+        );
     }
 
     return (
@@ -23,7 +58,7 @@ function PlaylistDetail() {
             <div className="flex items-center gap-4 p-4">
                 <button
                     onClick={() => navigate(-1)}
-                    className="p-2 bg-transparent text-black hover:scale-120 transition-transform rounded-full"
+                    className="p-2 bg-transparent text-black hover:scale-110 transition-transform rounded-full"
                 >
                     <ArrowLeft size={24} />
                 </button>
@@ -59,9 +94,9 @@ function PlaylistDetail() {
                                 <img
                                     src={movie.img}
                                     alt={movie.title}
-                                    className="w-full aspect-2/3 object-cover rounded-lg"
+                                    className="w-full aspect-[2/3] object-cover rounded-lg"
                                 />
-                                <div className="absolute inset-0 bg-gray-500/0  transition-all duration-300 rounded-lg opacity-0 group-hover:opacity-100"></div>
+                                <div className="absolute inset-0 bg-gray-500/0 transition-all duration-300 rounded-lg opacity-0 group-hover:opacity-100"></div>
                             </div>
                             <div className="mt-2">
                                 <h4 className="font-semibold text-sm">
