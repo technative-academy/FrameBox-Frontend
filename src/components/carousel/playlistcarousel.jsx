@@ -1,6 +1,5 @@
 import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-// import { playlists } from "../../playlist-data.jsx";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchPlaylists } from "../../slices/playlistSlice";
@@ -9,12 +8,14 @@ function Carousel() {
     const dispatch = useDispatch();
     const playlists = useSelector((state) => state.playlists.items);
     const status = useSelector((state) => state.playlists.status);
+    const error = useSelector((state) => state.playlists.error);
 
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isHovered, setIsHovered] = useState(false);
     const carouselRef = useRef(null);
     const navigate = useNavigate();
 
+    // Fetch playlists from API
     useEffect(() => {
         if (status === "idle") {
             dispatch(fetchPlaylists());
@@ -22,10 +23,11 @@ function Carousel() {
     }, [dispatch, status]);
 
     const getItemsPerView = () => {
-        if (window.innerWidth < 640) return 1;
-        if (window.innerWidth < 768) return 2;
-        if (window.innerWidth < 1024) return 3;
-        return 5;
+        if (window.innerWidth >= 1280) return 5;
+        if (window.innerWidth >= 1024) return 4;
+        if (window.innerWidth >= 768) return 3;
+        if (window.innerWidth >= 640) return 2;
+        return 1;
     };
 
     const scrollToIndex = (index) => {
@@ -77,7 +79,7 @@ function Carousel() {
     };
 
     return (
-        <div className="py-1 sm:py-2 pb-1 sm:pb-1">
+        <div className="py-2 w-11/12 sm:py-4 pb-10 sm:pb-1">
             <div
                 className="relative group"
                 onMouseEnter={() => setIsHovered(true)}
@@ -102,15 +104,15 @@ function Carousel() {
                     </button>
                 )}
 
-                <div className="overflow-x-auto overflow-y-hidden snap-x snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] sm:overflow-hidden bg-violet-800">
+                <div className="overflow-x-auto overflow-y-hidden snap-x snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] sm:overflow-hidden">
                     <div
                         ref={carouselRef}
-                        className="flex gap-4 transition-transform duration-300 ease-in-out px-4 sm:px-4"
+                        className="flex gap-3 transition-transform duration-300 ease-in-out px-4 sm:px-4 "
                     >
                         {playlists.map((playlist, index) => (
                             <div
                                 key={playlist.id}
-                                className="flex-none w-[80vw] sm:w-1/2 md:w-1/3 lg:w-1/5 snap-start first:snap-center last:snap-center"
+                                className="flex-none w-[80vw] sm:w-1/2 md:w-1/3 lg:w-1/5 snap-start first:snap-center last:snap-center bg-blue-700"
                             >
                                 <div
                                     className="relative group/card cursor-pointer"
