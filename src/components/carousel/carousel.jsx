@@ -13,6 +13,12 @@ function Carousel() {
     const [isHovered, setIsHovered] = useState(false);
     const carouselRef = useRef(null);
 
+    useEffect(() => {
+        if (status === "idle") {
+            dispatch(fetchMovies());
+        }
+    }, [dispatch, status]);
+
     const getItemsPerView = () => {
         if (window.innerWidth >= 1280) return 5;
         if (window.innerWidth >= 1024) return 4;
@@ -44,12 +50,6 @@ function Carousel() {
         setCurrentIndex(prevIndex);
         scrollToIndex(prevIndex);
     };
-
-    useEffect(() => {
-        if (status === "idle") {
-            dispatch(fetchMovies());
-        }
-    }, [dispatch, status]);
 
     useEffect(() => {
         const handleResize = () => {
