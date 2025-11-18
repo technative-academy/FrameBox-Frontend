@@ -112,7 +112,7 @@ function Carousel() {
                         {playlists.map((playlist, index) => (
                             <div
                                 key={playlist.id}
-                                className="flex-none w-[80vw] sm:w-1/2 md:w-1/3 lg:w-1/5 snap-start first:snap-center last:snap-center bg-blue-700"
+                                className="flex-none w-[75vw] sm:w-1/2 md:w-1/3 lg:w-1/5 snap-start first:snap-center last:snap-center "
                             >
                                 <div
                                     className="relative group/card cursor-pointer"
@@ -127,7 +127,7 @@ function Carousel() {
                                             className="w-full aspect-square object-cover rounded-lg"
                                         />
                                     </div>
-                                    <div className="mt-2 p-2">
+                                    <div className="mt-4 p-2">
                                         <h3 className="text-base sm:text-lg font-bold text-black">
                                             {playlist.playlist_name}
                                         </h3>
