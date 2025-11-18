@@ -121,17 +121,16 @@ function Carousel() {
                                     }
                                 >
                                     <div className="relative">
+                                        <h3 className="text-base sm:text-lg font-bold text-black">
+                                            {playlist.title}
+                                        </h3>
                                         <img
                                             src={playlist.img}
-                                            alt={playlist.playlist_name}
+                                            alt={playlist.title}
                                             className="w-full aspect-square object-cover rounded-lg"
                                         />
                                     </div>
-                                    <div className="mt-4 p-2">
-                                        <h3 className="text-base sm:text-lg font-bold text-black">
-                                            {playlist.playlist_name}
-                                        </h3>
-                                    </div>
+                                    <div className="mt-4 p-2"></div>
                                     {/* Hover overlay covering both image and text */}
                                     <div className="absolute inset-0 bg-gray-500/0 group-hover/card:bg-gray-500/20 transition-all duration-300 rounded-lg opacity-0 group-hover/card:opacity-100"></div>
                                 </div>
