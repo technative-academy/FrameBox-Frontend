@@ -74,8 +74,8 @@ function Carousel() {
         }
     };
 
-    const handlePlaylistClick = (playlistId) => {
-        navigate(`/playlist/${playlistId}`);
+    const handlePlaylistClick = (playlistSlug) => {
+        navigate(`/playlist/${playlistSlug}`);
     };
 
     return (
