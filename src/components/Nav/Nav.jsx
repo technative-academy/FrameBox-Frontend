@@ -3,6 +3,7 @@ import { useState } from "react";
 import styles from "./Nav.module.css";
 import { Menu, X } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../../slices/authSlice.jsx";
 
 function SiteNav({ type }) {
     const dispatch = useDispatch();
@@ -11,12 +12,9 @@ function SiteNav({ type }) {
     const navLinks = [
         { label: "Home", url: "/" },
         { label: "Movies", url: "/Movies" },
-        isLoggedIn
-            ? { label: "Logout", url: "/Logout" }
-            : { label: "Login", url: "/Login" },
-
+        isLoggedIn ? null : { label: "Login", url: "/Login" },
         isLoggedIn ? null : { label: "SignUp", url: "/SignUp" },
-    ].filter(Boolean); // remove null entries
+    ].filter(Boolean);
 
     const [isActive, setIsActive] = useState(false);
 
@@ -77,6 +75,15 @@ function SiteNav({ type }) {
                             {navLink.label}
                         </NavLink>
                     ))}
+                    {isLoggedIn ? (
+                        <NavLink
+                            to="/logout"
+                            onClick={() => dispatch(logout())}
+                            className={styles.inactiveLink}
+                        >
+                            Logout
+                        </NavLink>
+                    ) : null}
                 </nav>
             )}
         </header>
