@@ -2,6 +2,10 @@ import { useState } from "react";
 import { addPlaylists } from "../../slices/playListFormSlice.jsx";
 
 function playListForm() {
+    const dispatch = useDispatch();
+    const movies = useSelector((state) => state.movies.items);
+    const status = useSelector((state) => state.movies.status);
+
     const [playlistName, setPlaylistName] = useState("");
     const [playlistDesc, setPlaylistDesc] = useState("");
     const handleSubmit = (e) => {
