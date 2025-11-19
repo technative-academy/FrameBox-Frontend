@@ -2,15 +2,21 @@ import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import styles from "./Nav.module.css";
 import { Menu, X } from "lucide-react";
+import { useDispatch, useSelector } from "react-redux";
 
 function SiteNav({ type }) {
+    const dispatch = useDispatch();
+    const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+
     const navLinks = [
         { label: "Home", url: "/" },
         { label: "Movies", url: "/Movies" },
-        type === "login"
-            ? { label: "Login", url: "/Login" }
-            : { label: "SignUp", url: "/SignUp" },
-    ];
+        isLoggedIn
+            ? { label: "Logout", url: "/Logout" }
+            : { label: "Login", url: "/Login" },
+
+        isLoggedIn ? null : { label: "SignUp", url: "/SignUp" },
+    ].filter(Boolean); // remove null entries
 
     const [isActive, setIsActive] = useState(false);
 

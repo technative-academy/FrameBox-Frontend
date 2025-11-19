@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { register } from "../../slices/authSlice.jsx";
+import { register, login } from "../../slices/authSlice.jsx";
 
 function Form({ type }) {
     const [username, setUsername] = useState("");
@@ -25,6 +25,9 @@ function Form({ type }) {
             }
             // Handle signup logic
             dispatch(register({ username, email, password }));
+        } else {
+            // Handle login logic
+            dispatch(login({ email, password }));
         }
     };
 
