@@ -1,9 +1,9 @@
 import makeApiRequest from "./apiService";
 
-const register = async (name, email, password, bio) => {
+const register = async (username, email, password) => {
     return makeApiRequest("auth/register", {
         method: "POST",
-        body: JSON.stringify({ name, email, password, bio }),
+        body: JSON.stringify({ username, email, password }),
     });
 };
 
