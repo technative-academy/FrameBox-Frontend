@@ -19,6 +19,10 @@ function Form({ type }) {
     const submitHandler = (e) => {
         e.preventDefault();
         if (type === "signup") {
+            if (password !== repeatPassword) {
+                alert("Passwords do not match!");
+                return;
+            }
             // Handle signup logic
             dispatch(register({ username, email, password }));
         }
