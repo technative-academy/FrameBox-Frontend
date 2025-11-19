@@ -2,15 +2,19 @@ import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import styles from "./Nav.module.css";
 import { Menu, X } from "lucide-react";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../../slices/authSlice.jsx";
 
 function SiteNav({ type }) {
+    const dispatch = useDispatch();
+    const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+
     const navLinks = [
         { label: "Home", url: "/" },
         { label: "Movies", url: "/Movies" },
-        type === "login"
-            ? { label: "Login", url: "/Login" }
-            : { label: "SignUp", url: "/SignUp" },
-    ];
+        isLoggedIn ? null : { label: "Login", url: "/Login" },
+        isLoggedIn ? null : { label: "SignUp", url: "/SignUp" },
+    ].filter(Boolean);
 
     const [isActive, setIsActive] = useState(false);
 
@@ -71,6 +75,15 @@ function SiteNav({ type }) {
                             {navLink.label}
                         </NavLink>
                     ))}
+                    {isLoggedIn ? (
+                        <NavLink
+                            to="/logout"
+                            onClick={() => dispatch(logout())}
+                            className={styles.inactiveLink}
+                        >
+                            Logout
+                        </NavLink>
+                    ) : null}
                 </nav>
             )}
         </header>

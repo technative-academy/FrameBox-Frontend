@@ -40,6 +40,10 @@ const routes = [
                 path: "playlist/:slug",
                 element: <PlaylistDetail />,
             },
+            {
+                path: "logout",
+                element: <Home />,
+            },
 
             {
                 path: "*",
