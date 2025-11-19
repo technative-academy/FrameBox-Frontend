@@ -4,6 +4,7 @@ import {
     addMovieToPlaylist,
     isMovieInPlaylist,
 } from "../../playlistHelpers.jsx";
+import AddButton from "../AddButton/AddButton.jsx";
 
 function MovieCard({ movie }) {
     const [showPlaylistMenu, setShowPlaylistMenu] = useState(false);
@@ -27,16 +28,7 @@ function MovieCard({ movie }) {
                     className="w-full h-[400px] sm:h-[450px] object-contain rounded-lg aspect-2/3"
                 />
 
-                {/* Add to playlist button */}
-                <button
-                    onClick={(e) => {
-                        e.stopPropagation();
-                        setShowPlaylistMenu(!showPlaylistMenu);
-                    }}
-                    className="absolute top-2 right-2 bg-black/70 hover:bg-black/90 text-white w-8 h-8 flex items-center justify-center rounded-full opacity-0 group-hover/card:opacity-100 transition-opacity"
-                >
-                    +
-                </button>
+                <AddButton />
 
                 {/* Playlist dropdown menu */}
                 {showPlaylistMenu && (
