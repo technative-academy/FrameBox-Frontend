@@ -26,7 +26,7 @@ function SiteNav({ type }) {
         <header className="flex flex-wrap bg-amber-100 shadow-[0px_7px_29px_0px_rgba(100,100,111,0.2)]">
             {/* Top Row */}
             <div className="flex justify-between items-center w-full px-6 py-3">
-                <h1 className="font-bold text-xl text-black">MySite</h1>
+                <h1 className="font-bold text-xl text-black">FrameBox</h1>
 
                 {/* Desktop Nav */}
                 <nav className="hidden md:flex gap-6">
