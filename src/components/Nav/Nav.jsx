@@ -47,6 +47,15 @@ function SiteNav({ type }) {
                             {navLink.label}
                         </NavLink>
                     ))}
+                    {isLoggedIn ? (
+                        <NavLink
+                            to="/logout"
+                            onClick={() => dispatch(logout())}
+                            className={styles.inactiveLink}
+                        >
+                            Logout
+                        </NavLink>
+                    ) : null}
                 </nav>
 
                 {/* Mobile Toggle */}
