@@ -17,7 +17,7 @@ const login = async (email, password) => {
         sessionStorage.setItem("accessToken", response.accessToken);
     }
 
-    return { id: response.id, name: response.name };
+    return { username: response.username };
 };
 
 const logout = async () => {
