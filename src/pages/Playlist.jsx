@@ -3,32 +3,55 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { ArrowLeft } from "lucide-react";
 import { fetchPlaylists } from "../slices/playlistSlice";
-import { getMoviesForPlaylist } from "../playlistHelpers.jsx";
+import { fetchMovies } from "../slices/moviesAPISlice";
+//import { getMoviesForPlaylist } from "../playlistHelpers.jsx";
 
 function PlaylistDetail() {
-    const dispatch = useDispatch();
+    const dispatchPlaylists = useDispatch();
     const playlists = useSelector((state) => state.playlists.items);
-    const status = useSelector((state) => state.playlists.status);
+    const statusPlaylists = useSelector((state) => state.playlists.status);
     const error = useSelector((state) => state.playlists.error);
+
+    const dispatchMovies = useDispatch();
+    const movies = useSelector((state) => state.movies.items);
+    const statusMovies = useSelector((state) => state.movies.status);
 
     //  Fetch playlists from API if not loaded
     useEffect(() => {
-        if (status === "idle") {
-            dispatch(fetchPlaylists());
+        if (statusPlaylists === "idle") {
+            dispatchPlaylists(fetchPlaylists());
         }
-    }, [dispatch, status]);
+    }, [dispatchPlaylists, statusPlaylists]);
 
-    const { id } = useParams();
+    //  Fetch movies from API if not loaded
+    useEffect(() => {
+        if (statusMovies === "idle") {
+            dispatchMovies(fetchMovies());
+        }
+    }, [dispatchMovies, statusMovies]);
+
+    const { slug } = useParams();
     const navigate = useNavigate();
 
     // Find playlist by ID from Redux store
-    const playlist = playlists.find((p) => p.id === parseInt(id));
+    const playlist = playlists.find((p) => p.slug === slug);
+    console.log(slug);
+    console.log(playlists);
 
+    const getMoviesForPlaylist = (playlist) => {
+        if (!playlist) return [];
+
+        return playlist.movies
+            .map((movieSlug) =>
+                movies.find((movie) => movie.slug === movieSlug)
+            )
+            .filter(Boolean);
+    };
     // Fetch related movies dynamically
-    const playlistMovies = getMoviesForPlaylist(parseInt(id));
+    const playlistMovies = getMoviesForPlaylist(playlist);
 
     // Handle loading and error states
-    if (status === "loading") {
+    if (statusPlaylists === "loading") {
         return (
             <div className="flex items-center justify-center h-auto mt-5 text-xl">
                 Loading playlist...
@@ -36,7 +59,7 @@ function PlaylistDetail() {
         );
     }
 
-    if (status === "failed") {
+    if (statusPlaylists === "failed") {
         return (
             <div className="flex items-center justify-center h-auto mt-5  text-red-600 text-xl">
                 Failed to load playlists: {error}
@@ -89,7 +112,7 @@ function PlaylistDetail() {
                 </h3>
                 <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
                     {playlistMovies.map((movie) => (
-                        <div key={movie.id} className="group cursor-pointer">
+                        <div key={movie.slug} className="group cursor-pointer">
                             <div className="relative">
                                 <img
                                     src={movie.img}

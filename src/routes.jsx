@@ -37,7 +37,7 @@ const routes = [
                 element: <Movies />,
             },
             {
-                path: "playlist/:id",
+                path: "playlist/:slug",
                 element: <PlaylistDetail />,
             },
 
