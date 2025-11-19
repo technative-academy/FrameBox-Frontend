@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchPlaylists } from "../../slices/playlistSlice";
+import AddButton from "../AddButton/AddButton";
 
 function Carousel() {
     const dispatch = useDispatch();
@@ -80,6 +81,7 @@ function Carousel() {
 
     return (
         <div className="py-2 w-11/12 sm:py-4 pb-10 sm:pb-1">
+            <AddButton type="playlist" />
             <div
                 className="relative group"
                 onMouseEnter={() => setIsHovered(true)}
