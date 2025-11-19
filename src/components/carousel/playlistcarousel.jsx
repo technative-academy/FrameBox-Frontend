@@ -111,13 +111,13 @@ function Carousel() {
                     >
                         {playlists.map((playlist, index) => (
                             <div
-                                key={playlist.id}
+                                key={playlist.slug}
                                 className="flex-none w-[75vw] sm:w-1/2 md:w-1/3 lg:w-1/5 snap-start first:snap-center last:snap-center "
                             >
                                 <div
                                     className="relative group/card cursor-pointer"
-                                    onClick={() =>
-                                        handlePlaylistClick(playlist.id)
+                                    onClick={(event) =>
+                                        handlePlaylistClick(playlist.slug)
                                     }
                                 >
                                     <div className="relative">

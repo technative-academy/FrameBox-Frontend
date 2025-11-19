@@ -18,14 +18,16 @@ function PlaylistDetail() {
         }
     }, [dispatch, status]);
 
-    const { id } = useParams();
+    const { slug } = useParams();
     const navigate = useNavigate();
 
     // Find playlist by ID from Redux store
-    const playlist = playlists.find((p) => p.id === parseInt(id));
+    const playlist = playlists.find((p) => p.slug === slug);
+    console.log(slug);
+    console.log(playlists);
 
     // Fetch related movies dynamically
-    const playlistMovies = getMoviesForPlaylist(parseInt(id));
+    const playlistMovies = getMoviesForPlaylist(slug);
 
     // Handle loading and error states
     if (status === "loading") {
