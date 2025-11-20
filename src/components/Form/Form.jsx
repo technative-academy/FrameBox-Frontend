@@ -35,7 +35,8 @@ function Form({ type }) {
                 return;
             }
         }
-        await dispatch(login({ email, password }));
+        const response = await dispatch(login({ email, password }));
+        console.log(response);
         navigate("/");
     };
 

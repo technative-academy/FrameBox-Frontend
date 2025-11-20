@@ -2,8 +2,12 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { ArrowLeft } from "lucide-react";
-import { fetchPlaylists } from "../slices/playlistSlice";
+import {
+    fetchPlaylists,
+    deleteMovieFromPlaylist,
+} from "../slices/playlistSlice";
 import { fetchMovies } from "../slices/moviesAPISlice";
+import DeleteButton from "../components/DeleteButton/DeleteButton";
 //import { getMoviesForPlaylist } from "../playlistHelpers.jsx";
 
 function PlaylistDetail() {
@@ -58,6 +62,12 @@ function PlaylistDetail() {
             </div>
         );
     }
+
+    const deletePLaylistMovies = (movies, playlist) => {
+        dispatchPlaylists(deleteMovieFromPlaylist({ movies, playlist }));
+        dispatchMovies(fetchMovies());
+        console.log("Deleted movie:", movies, "from playlist:", playlist);
+    };
 
     if (statusPlaylists === "failed") {
         return (
@@ -118,6 +128,15 @@ function PlaylistDetail() {
                                     src={movie.img}
                                     alt={movie.title}
                                     className="w-full aspect-2/3 object-cover rounded-lg"
+                                />
+                                <DeleteButton
+                                    onClick={() =>
+                                        deletePLaylistMovies(
+                                            movie.slug,
+                                            playlist.slug
+                                        )
+                                    }
+                                    nameOfButton={"x"}
                                 />
                                 <div className="absolute inset-0 bg-gray-500/0 transition-all duration-300 rounded-lg opacity-0 group-hover:opacity-100"></div>
                             </div>
