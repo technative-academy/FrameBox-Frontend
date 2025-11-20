@@ -8,7 +8,7 @@ Worked collaboratively with the backend team to develop a React + Tailwind inter
 ## 🚀 Overview
 
 **FrameBox** is a responsive web platform that allows users to **sign up, log in, browse movies, create playlists, and showcase favorites**.  
-Blending **Letterboxd’s movie-tracking concept** with **Spotify’s sleek design**, it delivers an engaging user experience through a powerful **React + Tailwind** frontend integrated with a robust **Node.js backend**.
+Blending **Letterboxd’s movie-tracking concept** with **Spotify’s sleek design**, it delivers an engaging user experience through a powerful **React + Tailwind** frontend integrated with a robust **Node.js backend** that can be found [here](https://github.com/technative-academy/FrameBox-Backend).
 
 ---
 
@@ -69,10 +69,12 @@ Licensed under the **MIT License**.
 
 ** Development Team**
 
--   **Frontend:**  
-    • Nathan Hor
-    • Thabo Gulu
+### Frontend
+- [Nathan Hor](https://github.com/NathanHor22)
+- [Thabo Gulu](https://github.com/tgulu)
+- [Tymur Soroka](https://github.com/timtim40a)
 
--   **Backend:**
-    • Matt Hemstock  
-    • Tymur Soroka
+### Backend
+- [Matt Hemstock](https://github.com/waker-btn)
+- [Tymur Soroka](https://github.com/timtim40a)
+
