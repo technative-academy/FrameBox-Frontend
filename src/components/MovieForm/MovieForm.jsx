@@ -4,9 +4,10 @@ import { fetchPlaylists } from "../../slices/playlistSlice";
 // import { addPlayLists } from "../../slices/playListFormSlice.jsx";
 import { addToPlayLists } from "../../slices/addToPlayListSlice.js";
 
-function MovieForm(movie) {
+function MovieForm(movies, onCancel) {
     const dispatch = useDispatch();
     const playlists = useSelector((state) => state.playlists.items);
+    // const movies = useSelector((state) => state.movies.items);
     const status = useSelector((state) => state.playlists.status);
     const error = useSelector((state) => state.playlists.error);
 
@@ -32,7 +33,7 @@ function MovieForm(movie) {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(
-            `Movie ${movie.slug} added to playlists:`,
+            `Movie ${movies.title} added to playlists:`,
             selectedPlaylists
         );
         dispatch(
@@ -78,6 +79,11 @@ function MovieForm(movie) {
                         <div className="flex gap-3 justify-center mt-5">
                             <button
                                 type="submit"
+                                onClick={() => {
+                                    setTimeout(() => {
+                                        onCancel();
+                                    }, 2000);
+                                }}
                                 className="px-4 py-2 bg-black text-white rounded-md"
                             >
                                 Save
