@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { register, login } from "../../slices/authSlice.jsx";
+import { useNavigate } from "react-router-dom";
 
 function Form({ type }) {
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [repeatPassword, setRepeatPassword] = useState("");
+    const navigate = useNavigate();
 
     const dispatch = useDispatch();
 
@@ -29,6 +31,7 @@ function Form({ type }) {
             // Handle login logic
             dispatch(login({ email, password }));
         }
+        navigate("/");
     };
 
     return (
