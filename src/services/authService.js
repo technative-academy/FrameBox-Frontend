@@ -1,9 +1,9 @@
 import makeApiRequest from "./apiService";
 
-const register = async (name, email, password, bio) => {
+const register = async (username, email, password) => {
     return makeApiRequest("auth/register", {
         method: "POST",
-        body: JSON.stringify({ name, email, password, bio }),
+        body: JSON.stringify({ username, email, password }),
     });
 };
 
@@ -17,7 +17,7 @@ const login = async (email, password) => {
         sessionStorage.setItem("accessToken", response.accessToken);
     }
 
-    return { id: response.id, name: response.name };
+    return { username: response.username };
 };
 
 const logout = async () => {

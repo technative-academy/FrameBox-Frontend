@@ -2,15 +2,20 @@ import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import styles from "./Nav.module.css";
 import { Menu, X } from "lucide-react";
+import { useSelector } from "react-redux";
+import PopUp from "../PopUp/PopUp.jsx";
 
 function SiteNav({ type }) {
+    const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+    const currentUser = useSelector((state) => state.auth.currentUser);
+    const [isLoggingOut, setIsLoggingOut] = useState(false);
+
     const navLinks = [
         { label: "Home", url: "/" },
         { label: "Movies", url: "/Movies" },
-        type === "login"
-            ? { label: "Login", url: "/Login" }
-            : { label: "SignUp", url: "/SignUp" },
-    ];
+        isLoggedIn ? null : { label: "Login", url: "/Login" },
+        isLoggedIn ? null : { label: "SignUp", url: "/SignUp" },
+    ].filter(Boolean);
 
     const [isActive, setIsActive] = useState(false);
 
@@ -26,7 +31,9 @@ function SiteNav({ type }) {
         <header className="flex flex-wrap bg-amber-100 shadow-[0px_7px_29px_0px_rgba(100,100,111,0.2)]">
             {/* Top Row */}
             <div className="flex justify-between items-center w-full px-6 py-3">
-                <h1 className="font-bold text-xl text-black">MySite</h1>
+                <h1 className="font-bold text-xl text-black">
+                    Welcome, {currentUser || "Guest"} to FrameBox
+                </h1>
 
                 {/* Desktop Nav */}
                 <nav className="hidden md:flex gap-6">
@@ -43,7 +50,18 @@ function SiteNav({ type }) {
                             {navLink.label}
                         </NavLink>
                     ))}
+                    {isLoggedIn ? (
+                        <NavLink
+                            onClick={() => setIsLoggingOut(!isLoggingOut)}
+                            className={styles.inactiveLink}
+                        >
+                            Logout
+                        </NavLink>
+                    ) : null}
                 </nav>
+                {isLoggingOut ? (
+                    <PopUp onCancel={() => setIsLoggingOut(false)} />
+                ) : null}
 
                 {/* Mobile Toggle */}
                 <button
@@ -71,6 +89,14 @@ function SiteNav({ type }) {
                             {navLink.label}
                         </NavLink>
                     ))}
+                    {isLoggedIn ? (
+                        <NavLink
+                            onClick={() => setIsLoggingOut(!isLoggingOut)}
+                            className={styles.inactiveLink}
+                        >
+                            Logout
+                        </NavLink>
+                    ) : null}
                 </nav>
             )}
         </header>

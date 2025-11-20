@@ -1,13 +1,13 @@
-function AddButton({ type }) {
+function AddButton({ onClick, nameOfButton }) {
     return (
         <button
             onClick={(e) => {
                 e.stopPropagation();
-                setShowPlaylistMenu(!showPlaylistMenu);
+                onClick();
             }}
-            className="absolute top-2 right-2 bg-black/70 hover:bg-black/90 text-white w-8 h-8 flex items-center justify-center rounded-full opacity-0 group-hover/card:opacity-100 transition-opacity"
+            className="absolute z-10 bg-black/70 hover:bg-black/90 text-white p-2 rounded-l"
         >
-            +
+            {nameOfButton}
         </button>
     );
 }

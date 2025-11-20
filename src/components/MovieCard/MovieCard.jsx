@@ -19,16 +19,22 @@ function MovieCard({ movie }) {
         setShowPlaylistMenu(false);
     };
 
+    // TODO: Add Movie to backednd playlist
+    const handleAddData = () => {
+        setShowPlaylistMenu(!showPlaylistMenu);
+    };
+
     return (
         <div className="relative group/card cursor-pointer">
+            <div className="absolute  top-5 sm:top-10 right-8 sm:right-2 z-10">
+                <AddButton onClick={handleAddData} />
+            </div>
             <div className="relative">
                 <img
                     src={movie.img}
                     alt={movie.title}
                     className="w-full h-[400px] sm:h-[450px] object-contain rounded-lg aspect-2/3"
                 />
-
-                <AddButton />
 
                 {/* Playlist dropdown menu */}
                 {showPlaylistMenu && (
@@ -50,7 +56,7 @@ function MovieCard({ movie }) {
                                     No playlists found
                                 </p>
                             )}
-
+                        {/* TODO: Delete later if not needed anymore */}
                         {playlistStatus === "succeeded" &&
                             playlists.map((playlist) => (
                                 <button
