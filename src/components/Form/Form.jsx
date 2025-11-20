@@ -18,19 +18,24 @@ function Form({ type }) {
     //     password,
     //     repeatPassword,
     // });
-    const submitHandler = (e) => {
+    const submitHandler = async (e) => {
         e.preventDefault();
         if (type === "signup") {
             if (password !== repeatPassword) {
                 alert("Passwords do not match!");
                 return;
             }
-            // Handle signup logic
-            dispatch(register({ username, email, password }));
-        } else {
-            // Handle login logic
-            dispatch(login({ email, password }));
+            // Wait for signup to finish
+            const result = await dispatch(
+                register({ username, email, password })
+            );
+
+            // If signup failed, stop here
+            if (register.rejected.match(result)) {
+                return;
+            }
         }
+        await dispatch(login({ email, password }));
         navigate("/");
     };
 
