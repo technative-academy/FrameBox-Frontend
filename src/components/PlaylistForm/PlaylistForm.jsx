@@ -4,8 +4,6 @@ import { useSelector, useDispatch } from "react-redux";
 
 function PlayListForm() {
     const dispatch = useDispatch();
-    const movies = useSelector((state) => state.movies.items);
-    const status = useSelector((state) => state.movies.status);
 
     const [playlistName, setPlaylistName] = useState("");
     const [playlistDesc, setPlaylistDesc] = useState("");
@@ -25,7 +23,7 @@ function PlayListForm() {
                 <h1 className="text-2xl text-center">Create Playlist</h1>
                 <form
                     onSubmit={handleSubmit}
-                    className="  justify-center items-center  text-center gap-4 p-6 rounded-md flex flex-col"
+                    className="justify-center items-center text-center gap-4 p-6 rounded-md flex flex-col"
                 >
                     <label className="">
                         Playlist Name
