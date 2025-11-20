@@ -1,14 +1,9 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk, current } from "@reduxjs/toolkit";
 import authService from "../services/authService";
 
 export const register = createAsyncThunk(
     "auth/register",
     async ({ username, email, password }) => {
-        // console.log("Registering user:", {
-        //     username,
-        //     email,
-        //     password,
-        // });
         const user = await authService.register(username, email, password);
         return user;
     }
@@ -28,6 +23,7 @@ export const logout = createAsyncThunk("auth/logout", async () => {
 
 const initialState = {
     isLoggedIn: authService.isLoggedIn(),
+    currentUser: null,
     status: "idle",
     error: null,
 };
@@ -40,9 +36,10 @@ const authSlice = createSlice({
             .addCase(login.pending, (state) => {
                 state.status = "loading";
             })
-            .addCase(login.fulfilled, (state) => {
+            .addCase(login.fulfilled, (state, action) => {
                 state.status = "succeeded";
                 state.isLoggedIn = true;
+                state.currentUser = action.payload.username;
             })
             .addCase(login.rejected, (state, action) => {
                 state.status = "failed";
@@ -51,6 +48,7 @@ const authSlice = createSlice({
             .addCase(logout.fulfilled, (state) => {
                 state.isLoggedIn = false;
                 state.status = "idle";
+                state.currentUser = null;
             });
     },
 });
