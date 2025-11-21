@@ -11,6 +11,7 @@ function MovieForm({ movie, onCancel }) {
     const error = useSelector((state) => state.playlists.error);
 
     const [selectedPlaylists, setSelectedPlaylists] = useState([]);
+    const [movieName, setmovieName] = useState("");
 
     useEffect(() => {
         if (status === "idle") {
@@ -30,14 +31,14 @@ function MovieForm({ movie, onCancel }) {
         e.preventDefault();
 
         console.log(
-            `Movie "${movies.title}" added to playlists:`,
+            `Movie "${movieName}" added to playlists:`,
 
             selectedPlaylists
         );
 
         dispatch(
             addToPlayLists({
-                movieSlug: movies.slug,
+                title: movieName,
                 playlists: selectedPlaylists,
             })
         );
@@ -63,6 +64,8 @@ function MovieForm({ movie, onCancel }) {
                                 key={playlist.slug}
                                 className="flex items-center gap-2 text-base"
                             >
+                                {/* Add check to make sure the new playlist name isn't one thats already in the playlist array  */}
+                                {/* Movie with slug "love" already exists. */}
                                 <input
                                     type="checkbox"
                                     value={playlist.slug}
