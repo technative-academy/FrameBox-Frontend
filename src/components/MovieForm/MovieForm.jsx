@@ -1,21 +1,17 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchPlaylists } from "../../slices/playlistSlice";
-// import { addPlayLists } from "../../slices/playListFormSlice.jsx";
-import { addToPlayLists } from "../../slices/addToPlayListSlice.js";
+import { addToPlayLists } from "../../slices/addToPlayListsSlice";
 
-function MovieForm(movies, onCancel) {
+function MovieForm({ movie, onCancel }) {
+    const movies = useSelector((state) => state.movies.items);
     const dispatch = useDispatch();
     const playlists = useSelector((state) => state.playlists.items);
-    // const movies = useSelector((state) => state.movies.items);
     const status = useSelector((state) => state.playlists.status);
     const error = useSelector((state) => state.playlists.error);
 
-    // Track which playlists are selected
     const [selectedPlaylists, setSelectedPlaylists] = useState([]);
-    const [playlistName, setPlaylistName] = useState("");
 
-    // Fetch playlists if not already loaded
     useEffect(() => {
         if (status === "idle") {
             dispatch(fetchPlaylists());
@@ -32,15 +28,21 @@ function MovieForm(movies, onCancel) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+
         console.log(
-            `Movie ${movies.title} added to playlists:`,
+            `Movie "${movies.title}" added to playlists:`,
+
             selectedPlaylists
         );
+
         dispatch(
             addToPlayLists({
-                title: playlistName,
+                movieSlug: movies.slug,
+                playlists: selectedPlaylists,
             })
         );
+
+        onCancel();
     };
 
     return (
@@ -70,7 +72,7 @@ function MovieForm(movies, onCancel) {
                                     onChange={() =>
                                         handleCheckboxChange(playlist.slug)
                                     }
-                                    className="w- h-4"
+                                    className="w-4 h-4"
                                 />
                                 {playlist.title}
                             </label>
@@ -79,14 +81,16 @@ function MovieForm(movies, onCancel) {
                         <div className="flex gap-3 justify-center mt-5">
                             <button
                                 type="submit"
-                                onClick={() => {
-                                    setTimeout(() => {
-                                        onCancel();
-                                    }, 2000);
-                                }}
                                 className="px-4 py-2 bg-black text-white rounded-md"
                             >
                                 Save
+                            </button>
+                            <button
+                                type="button"
+                                onClick={onCancel}
+                                className="px-4 py-2 bg-gray-400 text-white rounded-md"
+                            >
+                                Cancel
                             </button>
                         </div>
                     </form>
