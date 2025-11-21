@@ -36,8 +36,26 @@ function MovieCard({ movie }) {
                 />
             </div>
             <div className="relative z-100">
-                {showPlaylistMenu && <MovieForm />}
+                {showPlaylistMenu && (
+                    <div className="fixed inset-0 bg-black/50 flex justify-center items-center z-50">
+                        <MovieForm
+                            movie={movie}
+                            onCancel={() => setShowPlaylistMenu(false)}
+                        />
+                    </div>
+                )}
             </div>
+
+            {/*       <div className="relative z-100">
+                {showForm && (
+                    <div className="fixed inset-0 bg-black/50 flex justify-center items-center z-50">
+                        <MovieForm
+                            movie={movie} // ✅ pass the specific movie object
+                            onCancel={() => setShowForm(false)}
+                        />
+                    </div>
+                )}
+            </div> */}
 
             <div className="relative">
                 <img
