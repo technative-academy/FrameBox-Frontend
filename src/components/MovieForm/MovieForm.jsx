@@ -3,8 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { fetchPlaylists } from "../../slices/playlistSlice";
 import { addToPlayListForm } from "../../slices/addToPlayListFormSlice";
 
-function MovieForm({ movie, onCancel }) {
-    const movies = useSelector((state) => state.movies.items);
+function MovieForm({ movies, onCancel }) {
     const dispatch = useDispatch();
     const playlists = useSelector((state) => state.playlists.items);
     const status = useSelector((state) => state.playlists.status);
@@ -31,8 +30,7 @@ function MovieForm({ movie, onCancel }) {
         e.preventDefault();
 
         console.log(
-            `Movie "${movieName}" added to playlists:`,
-
+            `Movie "${movies.slug}" added to playlists:`,
             selectedPlaylists
         );
 
@@ -72,9 +70,10 @@ function MovieForm({ movie, onCancel }) {
                                     checked={selectedPlaylists.includes(
                                         playlist.slug
                                     )}
-                                    onChange={() =>
-                                        handleCheckboxChange(playlist.slug)
-                                    }
+                                    onChange={(e) => {
+                                        setmovieName(movies.title);
+                                        handleCheckboxChange(playlist.slug);
+                                    }}
                                     className="w-4 h-4"
                                 />
                                 {playlist.title}
