@@ -16,6 +16,11 @@ function PlaylistDetail() {
     const movies = useSelector((state) => state.movies.items);
     const statusMovies = useSelector((state) => state.movies.status);
 
+    const { slug } = useParams();
+    const navigate = useNavigate();
+
+    const [playlistMovies, setPlaylistMovies] = useState([]);
+
     //  Fetch playlists from API if not loaded
     useEffect(() => {
         if (statusPlaylists === "idle") {
@@ -30,8 +35,13 @@ function PlaylistDetail() {
         }
     }, [dispatchMovies, statusMovies]);
 
-    const { slug } = useParams();
-    const navigate = useNavigate();
+    useEffect(() => {
+        const playlist = playlists.find((p) => p.slug === slug);
+        if (playlist) {
+            const updatedMovies = getMoviesForPlaylist(playlist);
+            setPlaylistMovies(updatedMovies);
+        }
+    }, [playlists, movies, slug]);
 
     // Find playlist by ID from Redux store
     const playlist = playlists.find((p) => p.slug === slug);
@@ -39,7 +49,11 @@ function PlaylistDetail() {
     console.log(playlists);
 
     const getMoviesForPlaylist = (playlist) => {
-        if (!playlist) return [];
+        if (!playlist || !Array.isArray(playlist.movies)) return [];
+
+        console.log("Playlist object:", playlist);
+        console.log("Movies in playlist:", playlist.movies);
+        console.log("All movies in store:", playlist.movies);
 
         return playlist.movies
             .map((movieSlug) =>
@@ -48,7 +62,7 @@ function PlaylistDetail() {
             .filter(Boolean);
     };
     // Fetch related movies dynamically
-    const playlistMovies = getMoviesForPlaylist(playlist);
+    // const playlistMovies = getMoviesForPlaylist(playlist);
 
     // Handle loading and error states
     if (statusPlaylists === "loading") {
@@ -92,12 +106,12 @@ function PlaylistDetail() {
             <div className="flex flex-col md:flex-row gap-6 p-4">
                 <img
                     src={playlist.img}
-                    alt={playlist.playlist_name}
+                    alt={playlist.title}
                     className="w-64 h-64 object-cover rounded-lg"
                 />
                 <div className="flex flex-col justify-end">
-                    <h2 className="text-5xl font-bold mb-2">
-                        {playlist.playlist_name}
+                    <h2 className="text-2xl font-bold mb-2">
+                        {playlist.title}
                     </h2>
                     <p className="text-gray-600">
                         {playlistMovies.length} movies
@@ -125,9 +139,6 @@ function PlaylistDetail() {
                                 <h4 className="font-semibold text-sm">
                                     {movie.title}
                                 </h4>
-                                <p className="text-xs text-gray-600">
-                                    {movie.category}
-                                </p>
                             </div>
                         </div>
                     ))}
