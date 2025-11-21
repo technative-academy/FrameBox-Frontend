@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchPlaylists } from "../../slices/playlistSlice";
-import { addToPlayLists } from "../../slices/addToPlayListsSlice";
+import { addToPlayListForm } from "../../slices/addToPlayListFormSlice";
 
 function MovieForm({ movie, onCancel }) {
     const movies = useSelector((state) => state.movies.items);
@@ -37,7 +37,7 @@ function MovieForm({ movie, onCancel }) {
         );
 
         dispatch(
-            addToPlayLists({
+            addToPlayListForm({
                 title: movieName,
                 playlists: selectedPlaylists,
             })
