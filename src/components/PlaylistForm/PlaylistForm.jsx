@@ -15,6 +15,8 @@ function PlayListForm() {
                 summary: playlistDesc,
             })
         );
+        console.log(playlistName);
+        console.log(playlistDesc);
     };
 
     return (
