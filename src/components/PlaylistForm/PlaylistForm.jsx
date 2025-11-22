@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { addPlaylists } from "../../slices/playListFormSlice.jsx";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 
-function PlayListForm() {
+function PlayListForm({ onCancel }) {
     const dispatch = useDispatch();
 
     const [playlistName, setPlaylistName] = useState("");
@@ -17,6 +17,7 @@ function PlayListForm() {
         );
         console.log(playlistName);
         console.log(playlistDesc);
+        onCancel();
     };
 
     return (
@@ -50,6 +51,7 @@ function PlayListForm() {
 
                     <button
                         type="submit"
+                        onClick={onCancel}
                         className="bg-black justify-center flex text-white p-2 mx-auto rounded-md w-24"
                     >
                         Submit
