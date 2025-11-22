@@ -5,12 +5,15 @@ import { fetchPlaylists } from "./playlistSlice";
 // Async thunk to fetch playlists
 export const addToPlayListForm = createAsyncThunk(
     "playlists/addToPlayListForm",
-    async (playlist) => {
-        const response = await makeApiRequest("playlists", {
-            method: "POST",
-            body: JSON.stringify(playlist),
-        });
 
+    async ({ playlistSlug, movieSlug }) => {
+        const response = await makeApiRequest(
+            `playlists/${playlistSlug}/movies`,
+            {
+                method: "POST",
+                body: JSON.stringify({ movies: [movieSlug] }),
+            }
+        );
         return response;
     }
 );
@@ -29,11 +32,20 @@ const addToPlayListFormSlice = createSlice({
                 state.status = "loading";
             })
             .addCase(addToPlayListForm.fulfilled, (state, action) => {
-                state.items = action.payload;
                 state.status = "succeeded";
+                const updatedPlaylist = action.payload;
+                const index = state.items.findIndex(
+                    (p) => p.slug === updatedPlaylist.slug
+                );
+                if (index !== -1) {
+                    state.items[index] = updatedPlaylist;
+                } else {
+                    state.items.push(updatedPlaylist);
+                }
             })
-            .addCase(addToPlayListForm.rejected, (state) => {
+            .addCase(addToPlayListForm.rejected, (state, action) => {
                 state.status = "failed";
+                state.error = action.payload || action.error.message;
             });
     },
 });
