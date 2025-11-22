@@ -25,21 +25,29 @@ function MovieForm({ movies, onCancel }) {
                 : [...prev, slug]
         );
     };
-
+    // components/MovieForm/MovieForm.jsx
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        console.log(
-            `Movie "${movies.slug}" added to playlists:`,
-            selectedPlaylists
-        );
-
-        dispatch(
-            addToPlayListForm({
-                title: movieName,
-                playlists: selectedPlaylists,
-            })
-        );
+        selectedPlaylists.forEach((playlistSlug) => {
+            dispatch(
+                addToPlayListForm({
+                    playlistSlug,
+                    movieSlug: movies.slug,
+                })
+            )
+                .unwrap()
+                .then((res) => {
+                    console.log(
+                        `Movie "${movies.title}" added to playlist: ${playlistSlug}`,
+                        res
+                    );
+                    dispatch(fetchPlaylists()); // refresh playlists after change
+                })
+                .catch((err) => {
+                    console.error("Error adding movie:", err);
+                });
+        });
 
         onCancel();
     };
@@ -88,7 +96,7 @@ function MovieForm({ movies, onCancel }) {
                                 Save
                             </button>
                             <button
-                                type="button"
+                                type="sumbit"
                                 onClick={onCancel}
                                 className="px-4 py-2 bg-gray-400 text-white rounded-md"
                             >
