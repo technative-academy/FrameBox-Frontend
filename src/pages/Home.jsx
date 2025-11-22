@@ -9,7 +9,7 @@ function Home() {
     const [showPlayForm, setShowPlayForm] = useState(false);
 
     const onAddButtonClick = () => {
-        setShowPlayForm(!showPlayForm);
+        setShowPlayForm((prev) => !prev);
     };
     const buttonName = "Create Playlist";
 
@@ -34,7 +34,11 @@ function Home() {
                 </div>
                 <div>
                     <div className="relative z-100">
-                        {showPlayForm && <PlayListForm />}
+                        {showPlayForm && (
+                            <PlayListForm
+                                onCancel={() => setShowPlayForm(false)}
+                            />
+                        )}
                     </div>
                     <div className="flex justify-center">
                         <PlaylistCarousel />
