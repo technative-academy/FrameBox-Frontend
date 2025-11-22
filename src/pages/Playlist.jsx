@@ -1,10 +1,9 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { ArrowLeft } from "lucide-react";
 import { fetchPlaylists } from "../slices/playlistSlice";
 import { fetchMovies } from "../slices/moviesAPISlice";
-//import { getMoviesForPlaylist } from "../playlistHelpers.jsx";
 
 function PlaylistDetail() {
     const dispatchPlaylists = useDispatch();
@@ -18,8 +17,6 @@ function PlaylistDetail() {
 
     const { slug } = useParams();
     const navigate = useNavigate();
-
-    const [playlistMovies, setPlaylistMovies] = useState([]);
 
     //  Fetch playlists from API if not loaded
     useEffect(() => {
@@ -35,34 +32,26 @@ function PlaylistDetail() {
         }
     }, [dispatchMovies, statusMovies]);
 
-    useEffect(() => {
-        const playlist = playlists.find((p) => p.slug === slug);
-        if (playlist) {
-            const updatedMovies = getMoviesForPlaylist(playlist);
-            setPlaylistMovies(updatedMovies);
-        }
-    }, [playlists, movies, slug]);
-
     // Find playlist by ID from Redux store
     const playlist = playlists.find((p) => p.slug === slug);
-    console.log(slug);
-    console.log(playlists);
 
     const getMoviesForPlaylist = (playlist) => {
         if (!playlist || !Array.isArray(playlist.movies)) return [];
 
-        console.log("Playlist object:", playlist);
-        console.log("Movies in playlist:", playlist.movies);
-        console.log("All movies in store:", playlist.movies);
+        // API already returns full movie objects
+        if (playlist.movies.length && typeof playlist.movies[1] === "object") {
+            return playlist.movies;
+        }
 
+        // Fallback in case you ever only get slugs
         return playlist.movies
             .map((movieSlug) =>
                 movies.find((movie) => movie.slug === movieSlug)
             )
             .filter(Boolean);
     };
-    // Fetch related movies dynamically
-    // const playlistMovies = getMoviesForPlaylist(playlist);
+
+    const playlistMovies = getMoviesForPlaylist(playlist);
 
     // Handle loading and error states
     if (statusPlaylists === "loading") {
