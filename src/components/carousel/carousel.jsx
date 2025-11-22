@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 
 import MovieCard from "../MovieCard/MovieCard.jsx";
+import MovieForm from "../MovieForm/MovieForm.jsx";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchMovies } from "../../slices/moviesAPISlice.js";
 

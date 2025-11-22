@@ -5,6 +5,7 @@ import {
     isMovieInPlaylist,
 } from "../../playlistHelpers.jsx";
 import AddButton from "../AddButton/AddButton.jsx";
+import MovieForm from "../MovieForm/MovieForm.jsx";
 
 function MovieCard({ movie }) {
     const [showPlaylistMenu, setShowPlaylistMenu] = useState(false);
@@ -13,22 +14,38 @@ function MovieCard({ movie }) {
     const playlists = useSelector((state) => state.playlists.items);
     const playlistStatus = useSelector((state) => state.playlists.status);
 
+    const buttonName = "Add to Playlist";
+
     // TODO: Dispatch action to add movie to playlist in the backend
-    const handleAddToPlaylist = (movieId, playlistId) => {
-        addMovieToPlaylist(playlistId, movieId);
-        setShowPlaylistMenu(false);
-    };
+    // const handleAddToPlaylist = (movieId, playlistId) => {
+    //     addMovieToPlaylist(playlistId, movieId);
+    //     setShowPlaylistMenu(false);
+    // };
 
     // TODO: Add Movie to backednd playlist
-    const handleAddData = () => {
+    const onAddButtonClick = () => {
         setShowPlaylistMenu(!showPlaylistMenu);
     };
 
     return (
         <div className="relative group/card cursor-pointer">
-            <div className="absolute  top-5 sm:top-10 right-8 sm:right-2 z-10">
-                <AddButton onClick={handleAddData} />
+            <div className="absolute top-5 sm:top-10 right-8 sm:right-2 z-10">
+                <AddButton
+                    nameOfButton={buttonName}
+                    onClick={onAddButtonClick}
+                />
             </div>
+            <div className="relative z-100">
+                {showPlaylistMenu && (
+                    <div className="fixed inset-0 bg-black/50 flex justify-center items-center z-50">
+                        <MovieForm
+                            movies={movie}
+                            onCancel={() => setShowPlaylistMenu(false)}
+                        />
+                    </div>
+                )}
+            </div>
+
             <div className="relative">
                 <img
                     src={movie.img}
@@ -36,55 +53,12 @@ function MovieCard({ movie }) {
                     className="w-full h-[400px] sm:h-[450px] object-contain rounded-lg aspect-2/3"
                 />
 
-                {/* Playlist dropdown menu */}
-                {showPlaylistMenu && (
-                    <div className="absolute top-12 right-2 bg-white rounded-lg shadow-lg z-20 min-w-[150px]">
-                        {/* Show different messages depending on load state */}
-                        {playlistStatus === "loading" && (
-                            <p className="px-4 py-2 text-gray-500">
-                                Loading playlists...
-                            </p>
-                        )}
-                        {playlistStatus === "failed" && (
-                            <p className="px-4 py-2 text-red-500">
-                                Failed to load playlists
-                            </p>
-                        )}
-                        {playlistStatus === "succeeded" &&
-                            playlists.length === 0 && (
-                                <p className="px-4 py-2 text-gray-500">
-                                    No playlists found
-                                </p>
-                            )}
-                        {/* TODO: Delete later if not needed anymore */}
-                        {playlistStatus === "succeeded" &&
-                            playlists.map((playlist) => (
-                                <button
-                                    key={playlist.id}
-                                    onClick={(e) => {
-                                        e.stopPropagation();
-                                        handleAddToPlaylist(
-                                            movie.id,
-                                            playlist.id
-                                        );
-                                    }}
-                                    className={`block w-full text-left px-4 py-2 hover:bg-gray-100 ${
-                                        isMovieInPlaylist(playlist.id, movie.id)
-                                            ? "text-green-600 font-semibold"
-                                            : "text-gray-800"
-                                    }`}
-                                >
-                                    {playlist.playlist_name}
-                                    {isMovieInPlaylist(playlist.id, movie.id) &&
-                                        " ✓"}
-                                </button>
-                            ))}
-                    </div>
-                )}
+                {/* Playlist dropdown menu
+                {showPlaylistMenu && { MovieForm }} */}
             </div>
 
-            <div className="mt-0.5 sm:mt-1 p-1">
-                <h3 className="text-base sm:text-lg font-bold text-black">
+            <div className="mt-0.5 pb-1">
+                <h3 className="text-base sm:text-lg text-center font-bold text-black">
                     {movie.title}
                 </h3>
             </div>

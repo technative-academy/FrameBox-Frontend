@@ -32,10 +32,15 @@ function Form({ type }) {
 
             // If signup failed, stop here
             if (register.rejected.match(result)) {
+                alert("Registration failed: " + result.error.message);
                 return;
             }
         }
-        await dispatch(login({ email, password }));
+        const result = await dispatch(login({ email, password }));
+        if (login.rejected.match(result)) {
+            alert("Login failed: " + result.error.message);
+            return;
+        }
         navigate("/");
     };
 
