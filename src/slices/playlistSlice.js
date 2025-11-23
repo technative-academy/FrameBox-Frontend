@@ -42,8 +42,19 @@ const playlistSlice = createSlice({
             .addCase(fetchPlaylists.rejected, (state) => {
                 state.status = "failed";
             })
-            .addCase(deleteMovieFromPlaylist.fulfilled, (state) => {
+            .addCase(deleteMovieFromPlaylist.fulfilled, (state, action) => {
                 state.status = "deleted";
+                const { movieSlug, playlistSlug } = action.payload;
+
+                const playlist = state.items.find(
+                    (p) => p.slug === playlistSlug
+                );
+
+                if (playlist) {
+                    playlist.movies = playlist.movies.filter(
+                        (m) => m !== movieSlug
+                    );
+                }
             });
     },
 });

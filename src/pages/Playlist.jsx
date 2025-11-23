@@ -70,8 +70,6 @@ function PlaylistDetail() {
                 playlistSlug: slug,
             })
         );
-
-        dispatchMovies(fetchMovies());
     };
 
     if (statusPlaylists === "failed") {
