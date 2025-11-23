@@ -11,6 +11,18 @@ export const fetchPlaylists = createAsyncThunk(
     }
 );
 
+export const deleteMovieFromPlaylist = createAsyncThunk(
+    "movies/deleteMovieFromPlaylist",
+    async ({ movieSlug, playlistSlug }) => {
+        await makeApiRequest(`playlists/${playlistSlug}/movies`, {
+            method: "DELETE",
+            body: JSON.stringify({ movies: [movieSlug] }),
+        });
+
+        return { movieSlug, playlistSlug };
+    }
+);
+
 const playlistSlice = createSlice({
     name: "playlists",
     initialState: {
@@ -30,6 +42,20 @@ const playlistSlice = createSlice({
             })
             .addCase(fetchPlaylists.rejected, (state) => {
                 state.status = "failed";
+            })
+            .addCase(deleteMovieFromPlaylist.fulfilled, (state, action) => {
+                state.status = "deleted";
+                const { movieSlug, playlistSlug } = action.payload;
+
+                const playlist = state.items.find(
+                    (p) => p.slug === playlistSlug
+                );
+
+                if (playlist) {
+                    playlist.movies = playlist.movies.filter(
+                        (m) => m !== movieSlug
+                    );
+                }
             })
             .addCase(addToPlayListForm.fulfilled, (state, action) => {
                 const updatedPlaylist =

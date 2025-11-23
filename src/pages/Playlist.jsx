@@ -2,8 +2,13 @@ import { useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { ArrowLeft } from "lucide-react";
-import { fetchPlaylists } from "../slices/playlistSlice";
+import {
+    fetchPlaylists,
+    deleteMovieFromPlaylist,
+} from "../slices/playlistSlice";
 import { fetchMovies } from "../slices/moviesAPISlice";
+import DeleteButton from "../components/DeleteButton/DeleteButton";
+//import { getMoviesForPlaylist } from "../playlistHelpers.jsx";
 
 function PlaylistDetail() {
     const dispatchPlaylists = useDispatch();
@@ -61,6 +66,15 @@ function PlaylistDetail() {
             </div>
         );
     }
+
+    const deletePlaylistMovies = (movieSlug) => {
+        dispatchPlaylists(
+            deleteMovieFromPlaylist({
+                movieSlug,
+                playlistSlug: slug,
+            })
+        );
+    };
 
     if (statusPlaylists === "failed") {
         return (
@@ -122,7 +136,14 @@ function PlaylistDetail() {
                                     alt={movie.title}
                                     className="w-full aspect-2/3 object-cover rounded-lg"
                                 />
-                                <div className="absolute inset-0 bg-gray-500/0 transition-all duration-300 rounded-lg opacity-0 group-hover:opacity-100"></div>
+                                <div className="absolute inset-0 bg-gray-500/0 transition-all duration-300 rounded-lg opacity-0 group-hover:opacity-100">
+                                    <DeleteButton
+                                        onClick={() =>
+                                            deletePlaylistMovies(movie.slug)
+                                        }
+                                        nameOfButton={"x"}
+                                    />
+                                </div>
                             </div>
                             <div className="mt-2">
                                 <h4 className="font-semibold text-sm">
