@@ -26,8 +26,8 @@ function MovieCard({ movie }) {
 
     return (
         <div className="relative group/card cursor-pointer">
-            <div className="absolute  top-5 sm:top-10 right-8 sm:right-2 z-10">
-                <AddButton onClick={handleAddData} />
+            <div className="absolute inset-0 bg-gray-500/0 transition-all rounded-lg opacity-0 group-hover/card:opacity-100">
+                <AddButton onClick={handleAddData} nameOfButton="+" />
             </div>
             <div className="relative">
                 <img
