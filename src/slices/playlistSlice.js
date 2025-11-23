@@ -12,12 +12,13 @@ export const fetchPlaylists = createAsyncThunk(
 
 export const deleteMovieFromPlaylist = createAsyncThunk(
     "movies/deleteMovieFromPlaylist",
-    async (movieSlugs, playlistSlug) => {
+    async ({ movieSlug, playlistSlug }) => {
         await makeApiRequest(`playlists/${playlistSlug}/movies`, {
             method: "DELETE",
-            body: JSON.stringify({ movies: Array(movieSlugs) }),
+            body: JSON.stringify({ movies: [movieSlug] }),
         });
-        return { movieSlugs, playlistSlug };
+
+        return { movieSlug, playlistSlug };
     }
 );
 

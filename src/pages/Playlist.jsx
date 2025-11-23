@@ -63,10 +63,15 @@ function PlaylistDetail() {
         );
     }
 
-    const deletePLaylistMovies = (movies, playlist) => {
-        dispatchPlaylists(deleteMovieFromPlaylist({ movies, playlist }));
+    const deletePlaylistMovies = (movieSlug) => {
+        dispatchPlaylists(
+            deleteMovieFromPlaylist({
+                movieSlug,
+                playlistSlug: slug,
+            })
+        );
+
         dispatchMovies(fetchMovies());
-        console.log("Deleted movie:", movies, "from playlist:", playlist);
     };
 
     if (statusPlaylists === "failed") {
@@ -131,10 +136,7 @@ function PlaylistDetail() {
                                 />
                                 <DeleteButton
                                     onClick={() =>
-                                        deletePLaylistMovies(
-                                            movie.slug,
-                                            playlist.slug
-                                        )
+                                        deletePlaylistMovies(movie.slug)
                                     }
                                     nameOfButton={"x"}
                                 />
