@@ -132,13 +132,14 @@ function PlaylistDetail() {
                                     alt={movie.title}
                                     className="w-full aspect-2/3 object-cover rounded-lg"
                                 />
-                                <DeleteButton
-                                    onClick={() =>
-                                        deletePlaylistMovies(movie.slug)
-                                    }
-                                    nameOfButton={"x"}
-                                />
-                                <div className="absolute inset-0 bg-gray-500/0 transition-all duration-300 rounded-lg opacity-0 group-hover:opacity-100"></div>
+                                <div className="absolute inset-0 bg-gray-500/0 transition-all duration-300 rounded-lg opacity-0 group-hover:opacity-100">
+                                    <DeleteButton
+                                        onClick={() =>
+                                            deletePlaylistMovies(movie.slug)
+                                        }
+                                        nameOfButton={"x"}
+                                    />
+                                </div>
                             </div>
                             <div className="mt-2">
                                 <h4 className="font-semibold text-sm">
