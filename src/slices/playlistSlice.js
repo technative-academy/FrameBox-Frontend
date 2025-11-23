@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import makeApiRequest from "../services/apiService";
+import { addToPlayListForm } from "./addToPlayListFormSlice";
 
 // Async thunk to fetch playlists
 export const fetchPlaylists = createAsyncThunk(
@@ -54,6 +55,24 @@ const playlistSlice = createSlice({
                     playlist.movies = playlist.movies.filter(
                         (m) => m !== movieSlug
                     );
+                }
+            })
+            .addCase(addToPlayListForm.fulfilled, (state, action) => {
+                const updatedPlaylist =
+                    action.payload?.playlist || action.payload;
+
+                if (!updatedPlaylist || !updatedPlaylist.slug) {
+                    return;
+                }
+
+                const existingIndex = state.items.findIndex(
+                    (p) => p.slug === updatedPlaylist.slug
+                );
+
+                if (existingIndex !== -1) {
+                    state.items[existingIndex] = updatedPlaylist;
+                } else {
+                    state.items.push(updatedPlaylist);
                 }
             });
     },

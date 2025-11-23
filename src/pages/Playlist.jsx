@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { ArrowLeft } from "lucide-react";
@@ -20,6 +20,9 @@ function PlaylistDetail() {
     const movies = useSelector((state) => state.movies.items);
     const statusMovies = useSelector((state) => state.movies.status);
 
+    const { slug } = useParams();
+    const navigate = useNavigate();
+
     //  Fetch playlists from API if not loaded
     useEffect(() => {
         if (statusPlaylists === "idle") {
@@ -34,24 +37,25 @@ function PlaylistDetail() {
         }
     }, [dispatchMovies, statusMovies]);
 
-    const { slug } = useParams();
-    const navigate = useNavigate();
-
     // Find playlist by ID from Redux store
     const playlist = playlists.find((p) => p.slug === slug);
-    console.log(slug);
-    console.log(playlists);
 
     const getMoviesForPlaylist = (playlist) => {
-        if (!playlist) return [];
+        if (!playlist || !Array.isArray(playlist.movies)) return [];
 
+        // API already returns full movie objects
+        if (playlist.movies.length && typeof playlist.movies[1] === "object") {
+            return playlist.movies;
+        }
+
+        // Fallback in case you ever only get slugs
         return playlist.movies
             .map((movieSlug) =>
                 movies.find((movie) => movie.slug === movieSlug)
             )
             .filter(Boolean);
     };
-    // Fetch related movies dynamically
+
     const playlistMovies = getMoviesForPlaylist(playlist);
 
     // Handle loading and error states
@@ -105,12 +109,12 @@ function PlaylistDetail() {
             <div className="flex flex-col md:flex-row gap-6 p-4">
                 <img
                     src={playlist.img}
-                    alt={playlist.playlist_name}
+                    alt={playlist.title}
                     className="w-64 h-64 object-cover rounded-lg"
                 />
                 <div className="flex flex-col justify-end">
-                    <h2 className="text-5xl font-bold mb-2">
-                        {playlist.playlist_name}
+                    <h2 className="text-2xl font-bold mb-2">
+                        {playlist.title}
                     </h2>
                     <p className="text-gray-600">
                         {playlistMovies.length} movies
@@ -145,9 +149,6 @@ function PlaylistDetail() {
                                 <h4 className="font-semibold text-sm">
                                     {movie.title}
                                 </h4>
-                                <p className="text-xs text-gray-600">
-                                    {movie.category}
-                                </p>
                             </div>
                         </div>
                     ))}

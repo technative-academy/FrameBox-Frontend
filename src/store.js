@@ -6,6 +6,7 @@ import playlistReducer from "./slices/playlistSlice";
 import usersReducer from "./slices/usersSlice";
 import toastReducer from "./slices/toastSlice";
 import playListFormReducer from "./slices/playListFormSlice";
+import addToPlayListFormReducer from "./slices/addToPlayListFormSlice";
 
 const store = configureStore({
     reducer: {
@@ -15,6 +16,7 @@ const store = configureStore({
         users: usersReducer,
         toast: toastReducer,
         playListForm: playListFormReducer,
+        addToPlayListForm: addToPlayListFormReducer,
     },
 });
 

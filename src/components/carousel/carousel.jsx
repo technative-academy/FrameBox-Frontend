@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 
 import MovieCard from "../MovieCard/MovieCard.jsx";
+import MovieForm from "../MovieForm/MovieForm.jsx";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchMovies } from "../../slices/moviesAPISlice.js";
 
@@ -106,10 +107,10 @@ function Carousel() {
             >
                 {movies.map((movie) => (
                     <div
-                        key={movie.id}
+                        key={movie.slug + "wrapper"}
                         className="shrink-0 w-[calc(100%-0.5rem)] sm:w-[calc(50%-0.5rem)] md:w-[calc(33.333%-0.67rem)] lg:w-[calc(25%-0.75rem)] xl:w-[calc(20%-0.8rem)]"
                     >
-                        <MovieCard movie={movie} />
+                        <MovieCard key={movie.slug} movie={movie} />
                     </div>
                 ))}
             </div>
