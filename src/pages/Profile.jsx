@@ -1,6 +1,5 @@
 import PlaylistCarousel from "../components/carousel/playlistcarousel";
 
-//TODO: Fetch user data from Redux store and display actual user info
 function Profile() {
     return (
         <div className="bg-amber-50 min-h-screen">
