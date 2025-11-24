@@ -15,18 +15,18 @@
 .activeLink,
 .inactiveLink {
     font-size: 1.2rem;
-    color: #ab0f0f;
+    color: #fbfbfc;
     text-decoration: none;
     transition: color 0.3s;
 }
 
 .activeLink {
     font-weight: bold;
-    color: #000000;
+    color: #ff0000;
 }
 
 .inactiveLink:hover {
-    color: #000000;
+    color: #ff0000;
 }
 
 /* Burger animations */
