@@ -51,7 +51,6 @@ function PlayListForm({ onCancel }) {
 
                     <button
                         type="submit"
-                        onClick={onCancel}
                         className="bg-black justify-center flex text-white p-2 mx-auto rounded-md w-24"
                     >
                         Submit
