@@ -20,20 +20,20 @@ function Movies() {
     }, [dispatch, status]);
 
     return (
-        <div className="bg-amber-50 min-h-screen flex flex-col items-center justify-center px-4">
+        <div className="bg-zinc-900 min-h-screen text-white flex flex-col items-center justify-center px-4">
             {/* Title */}
             <h1 className="text-3xl font-bold mb-8 text-center">
                 Search your favourite movies
             </h1>
 
             {/* Search Bar */}
-            <div className="relative w-full max-w-2xl mb-10">
+            <div className="relative text-white w-full max-w-2xl mb-10">
                 <input
                     type="text"
                     placeholder="Search movies..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="w-full px-3 py-3 bg-transparent border-0 border-b-2 border-gray-300 focus:border-black focus:outline-none text-base transition-colors"
+                    className="w-full px-3 py-3 bg-transparent border-0 border-b-2 border-gray-300 focus:border-[#ff0000] focus:outline-none text-base transition-colors"
                 />
             </div>
 
