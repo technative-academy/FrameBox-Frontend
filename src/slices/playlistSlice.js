@@ -23,6 +23,17 @@ export const deleteMovieFromPlaylist = createAsyncThunk(
     }
 );
 
+export const deletePlaylist = createAsyncThunk(
+    "playlists/deletePlaylist",
+    async (playlistSlug) => {
+        await makeApiRequest(`playlists/${playlistSlug}`, {
+            method: "DELETE",
+        });
+
+        return playlistSlug;
+    }
+);
+
 const playlistSlice = createSlice({
     name: "playlists",
     initialState: {
