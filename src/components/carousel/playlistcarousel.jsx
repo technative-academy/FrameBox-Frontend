@@ -81,7 +81,9 @@ function Carousel() {
     };
 
     const handleDeletePlaylist = (playlistSlug) => {
-        dispatch(deletePlaylist(playlistSlug));
+        dispatch(deletePlaylist(playlistSlug)).then(() =>
+            dispatch(fetchPlaylists())
+        );
     };
 
     return (

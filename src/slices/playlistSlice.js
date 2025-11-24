@@ -85,6 +85,12 @@ const playlistSlice = createSlice({
                 } else {
                     state.items.push(updatedPlaylist);
                 }
+            })
+            .addCase(deletePlaylist.fulfilled, (state, action) => {
+                const playlistSlug = action.payload;
+                state.items = state.items.filter(
+                    (p) => p.slug !== playlistSlug
+                );
             });
     },
 });
