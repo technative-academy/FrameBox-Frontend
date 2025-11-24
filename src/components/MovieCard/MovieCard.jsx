@@ -44,7 +44,7 @@ function MovieCard({ movie }) {
             </div>
 
             <div className="mt-0.5 pb-1">
-                <h3 className="text-base sm:text-lg text-center font-bold text-black">
+                <h3 className="text-base sm:text-lg text-center font-bold text-white">
                     {movie.title}
                 </h3>
             </div>
