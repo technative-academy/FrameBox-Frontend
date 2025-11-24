@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { addPlaylists } from "../../slices/playListFormSlice.jsx";
+import { fetchPlaylists } from "../../slices/playlistSlice.js";
 import { useDispatch } from "react-redux";
 
 function PlayListForm({ onCancel }) {
@@ -14,7 +15,9 @@ function PlayListForm({ onCancel }) {
                 title: playlistName,
                 summary: playlistDesc,
             })
-        );
+        ).then(() => {
+            dispatch(fetchPlaylists());
+        });
         console.log(playlistName);
         console.log(playlistDesc);
         onCancel();
