@@ -8,7 +8,6 @@ import {
 } from "../slices/playlistSlice";
 import { fetchMovies } from "../slices/moviesAPISlice";
 import DeleteButton from "../components/DeleteButton/DeleteButton";
-//import { getMoviesForPlaylist } from "../playlistHelpers.jsx";
 
 function PlaylistDetail() {
     const dispatchPlaylists = useDispatch();

@@ -1,9 +1,5 @@
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import {
-    addMovieToPlaylist,
-    isMovieInPlaylist,
-} from "../../playlistHelpers.jsx";
 import AddButton from "../AddButton/AddButton.jsx";
 import MovieForm from "../MovieForm/MovieForm.jsx";
 
@@ -16,13 +12,6 @@ function MovieCard({ movie }) {
 
     const buttonName = "Add to Playlist";
 
-    // TODO: Dispatch action to add movie to playlist in the backend
-    // const handleAddToPlaylist = (movieId, playlistId) => {
-    //     addMovieToPlaylist(playlistId, movieId);
-    //     setShowPlaylistMenu(false);
-    // };
-
-    // TODO: Add Movie to backednd playlist
     const onAddButtonClick = () => {
         setShowPlaylistMenu(!showPlaylistMenu);
     };
@@ -30,7 +19,7 @@ function MovieCard({ movie }) {
     return (
         <div className="relative group/card cursor-pointer">
             <div className="absolute inset-0 bg-gray-500/0 transition-all rounded-lg opacity-0 group-hover/card:opacity-100">
-                <AddButton onClick={handleAddData} nameOfButton="+" />
+                <AddButton onClick={onAddButtonClick} nameOfButton="+" />
             </div>
             <div className="relative z-100">
                 {showPlaylistMenu && (
