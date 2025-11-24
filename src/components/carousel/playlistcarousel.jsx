@@ -126,7 +126,7 @@ function Carousel() {
                                             alt={playlist.title}
                                             className="w-full aspect-square object-cover rounded-lg"
                                         />
-                                        <h3 className="text-base sm:text-lg font-bold text-black text-center">
+                                        <h3 className="text-base sm:text-lg font-bold text-white text-center">
                                             {playlist.title}
                                         </h3>
                                     </div>
