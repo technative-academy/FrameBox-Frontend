@@ -37,11 +37,11 @@ function SiteNav({ type }) {
     const displayName = currentUser ? capitalName(currentUser) : "Guest";
 
     return (
-        <header className="flex flex-wrap bg-amber-100 shadow-[0px_7px_29px_0px_rgba(100,100,111,0.2)]">
+        <header className="flex flex-wrap bg-gray-600 shadow-[0px_7px_29px_0px_rgba(100,100,111,0.2)]">
             {/* Top Row */}
             <div className="flex justify-between items-center w-full px-6 py-3">
-                <h1 className="font-bold text-xl text-black">
-                    Welcome, {displayName} to FrameBox
+                <h1 className="font-bold text-xl text-white">
+                    Welcome: {displayName} to FrameBox
                 </h1>
 
                 {/* Desktop Nav */}
@@ -75,7 +75,7 @@ function SiteNav({ type }) {
                 {/* Mobile Toggle */}
                 <button
                     onClick={toggleMenu}
-                    className="md:hidden bg-amber-100 text-black"
+                    className="md:hidden bg-gray-900 text-white"
                 >
                     {isActive ? <X /> : <Menu />}
                 </button>
