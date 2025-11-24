@@ -27,12 +27,21 @@ function SiteNav({ type }) {
         setIsActive(false);
     };
 
+    const capitalName = (currentUser) => {
+        return (
+            String(currentUser).charAt(0).toUpperCase() +
+            String(currentUser).slice(1)
+        );
+    };
+
+    const displayName = currentUser ? capitalName(currentUser) : "Guest";
+
     return (
         <header className="flex flex-wrap bg-amber-100 shadow-[0px_7px_29px_0px_rgba(100,100,111,0.2)]">
             {/* Top Row */}
             <div className="flex justify-between items-center w-full px-6 py-3">
                 <h1 className="font-bold text-xl text-black">
-                    Welcome, {currentUser || "Guest"} to FrameBox
+                    Welcome, {displayName} to FrameBox
                 </h1>
 
                 {/* Desktop Nav */}
