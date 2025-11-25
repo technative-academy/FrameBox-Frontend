@@ -23,6 +23,17 @@ export const deleteMovieFromPlaylist = createAsyncThunk(
     }
 );
 
+export const deletePlaylist = createAsyncThunk(
+    "playlists/deletePlaylist",
+    async (playlistSlug) => {
+        await makeApiRequest(`playlists/${playlistSlug}`, {
+            method: "DELETE",
+        });
+
+        return playlistSlug;
+    }
+);
+
 const playlistSlice = createSlice({
     name: "playlists",
     initialState: {
@@ -74,6 +85,12 @@ const playlistSlice = createSlice({
                 } else {
                     state.items.push(updatedPlaylist);
                 }
+            })
+            .addCase(deletePlaylist.fulfilled, (state, action) => {
+                const playlistSlug = action.payload;
+                state.items = state.items.filter(
+                    (p) => p.slug !== playlistSlug
+                );
             });
     },
 });
