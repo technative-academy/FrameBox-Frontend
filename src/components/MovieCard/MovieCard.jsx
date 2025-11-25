@@ -54,7 +54,7 @@ function MovieCard({ movie }) {
             </div>
 
             {/* Hover overlay */}
-            <div className="absolute left-0 right-0 bottom-0 h-111 bg-gray-500/0 group-hover/card:bg-gray-200/20 transition-all duration-300 rounded-lg opacity-0 group-hover/card:opacity-100"></div>
+            <div className="absolute left-0 right-0 bottom-0 h-10 sm:h-111 lg:h-full lg:right-9 lg:left-9 bg-gray-500/0 group-hover/card:bg-gray-200/20 transition-all duration-300 rounded-lg opacity-0 group-hover/card:opacity-100"></div>
         </div>
     );
 }
