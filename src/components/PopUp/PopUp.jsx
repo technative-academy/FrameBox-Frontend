@@ -8,7 +8,7 @@ export default function PopUp({ onCancel }) {
 
     return (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-            <div className="flex justify-end items-center pr-4 bg-red-100 p-6 rounded shadow-lg">
+            <div className="flex justify-end items-center pr-4 bg-zinc-900 text-white p-6 rounded shadow-lg">
                 <div className="flex flex-col items-center justify-center text-xl lg:mb-16 ">
                     {justLoggedOut ? (
                         <h1 className="text-2xl text-center">
