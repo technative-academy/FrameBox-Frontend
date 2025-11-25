@@ -35,9 +35,11 @@ function Home() {
                 <div>
                     <div className="relative z-100">
                         {showPlayForm && (
-                            <PlayListForm
-                                onCancel={() => setShowPlayForm(false)}
-                            />
+                            <div className="fixed inset-0 bg-black/50 flex justify-center items-center z-50">
+                                <PlayListForm
+                                    onCancel={() => setShowPlayForm(false)}
+                                />
+                            </div>
                         )}
                     </div>
                     <div className="flex justify-center">
