@@ -39,7 +39,7 @@ function MovieCard({ movie }) {
                     className="w-full h-[400px] sm:h-[450px] object-contain rounded-lg aspect-2/3"
                 />
 
-                <div className="absolute top-10 right-9 z-50">
+                <div className="absolute top-2 right-16 sm:top-10 sm:right-9 xl:top-1 xl:right-16 z-50">
                     <AddButton onClick={onAddButtonClick} nameOfButton="+" />
                 </div>
 
