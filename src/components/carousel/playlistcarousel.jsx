@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchPlaylists } from "../../slices/playlistSlice";
+import { deletePlaylist } from "../../slices/playlistSlice";
+import DeleteButton from "../DeleteButton/DeleteButton";
 
 function Carousel() {
     const dispatch = useDispatch();
@@ -78,6 +80,12 @@ function Carousel() {
         navigate(`/playlist/${playlistSlug}`);
     };
 
+    const handleDeletePlaylist = (playlistSlug) => {
+        dispatch(deletePlaylist(playlistSlug)).then(() =>
+            dispatch(fetchPlaylists())
+        );
+    };
+
     return (
         <div className="py-2 w-11/12 sm:py-4 pb-10 sm:pb-1">
             <div
@@ -129,6 +137,16 @@ function Carousel() {
                                         <h3 className="text-base sm:text-lg font-bold text-black text-center">
                                             {playlist.title}
                                         </h3>
+                                        <div className="absolute inset-0 bg-gray-500/0 transition-all duration-300 rounded-lg opacity-0 group-hover:opacity-100">
+                                            <DeleteButton
+                                                onClick={() =>
+                                                    handleDeletePlaylist(
+                                                        playlist.slug
+                                                    )
+                                                }
+                                                nameOfButton={"x"}
+                                            />
+                                        </div>
                                     </div>
                                     <div className="mt-4 p-2"></div>
                                     {/* Hover overlay covering both image and text */}
