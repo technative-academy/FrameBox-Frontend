@@ -39,7 +39,7 @@ function MovieCard({ movie }) {
                     className="w-full h-[400px] sm:h-[450px] object-contain rounded-lg aspect-2/3"
                 />
 
-                <div className="absolute top-2 right-16 sm:top-10 sm:right-9 xl:top-1 xl:right-16 z-50">
+                <div className="absolute top-2 right-16 sm:top-10 sm:right-9 xl:top-4 xl:right-16 z-50">
                     <AddButton onClick={onAddButtonClick} nameOfButton="+" />
                 </div>
 
@@ -47,14 +47,14 @@ function MovieCard({ movie }) {
                 {showPlaylistMenu && { MovieForm }} */}
             </div>
 
-            <div className="mt-0.5 pb-1">
+            <div className="mt-0.5 pb-4 ">
                 <h3 className="text-base sm:text- text-center font-bold text-white">
                     {movie.title}
                 </h3>
+                <div className="absolute left-0 right-0 bottom-0 h-10 lg:top-[100] lg:right-9 lg:left-9 bg-gray-500/0 group-hover/card:bg-gray-200/20 transition-all duration-300 rounded-lg opacity-0 group-hover/card:opacity-100"></div>
             </div>
 
             {/* Hover overlay */}
-            <div className="absolute left-0 right-0 bottom-0 h-10 sm:h-111 lg:h-124 lg:right-9 lg:left-9 bg-gray-500/0 group-hover/card:bg-gray-200/20 transition-all duration-300 rounded-lg opacity-0 group-hover/card:opacity-100"></div>
         </div>
     );
 }
