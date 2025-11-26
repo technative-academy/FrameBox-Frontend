@@ -140,7 +140,7 @@ function Carousel() {
                                             </h3>
                                         </div>
 
-                                        <div className="absolute inset-0 opacity-0 group-hover/card:opacity-100 transition-opacity duration-200">
+                                        <div className="absolute sm:inset-0 bottom-20 opacity-100 sm:opacity-0 group-hover/card:opacity-100 transition-opacity duration-200">
                                             <DeleteButton
                                                 onClick={() =>
                                                     handleDeletePlaylist(
