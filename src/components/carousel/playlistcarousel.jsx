@@ -135,7 +135,7 @@ function Carousel() {
                                             className="w-full aspect-square object-cover rounded-lg"
                                         />
                                         <div className="mt-0.5 pb-2 group-hover/card:bg-gray-200/20 transition-all duration-300 group-hover/card:opacity-100 rounded-lg">
-                                            <h3 className="text-base sm:text-lg font-bold text-green-400 text-center">
+                                            <h3 className="text-base sm:text-lg font-bold text-white text-center">
                                                 {playlist.title}
                                             </h3>
                                         </div>
