@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { addPlaylists } from "../../slices/playListFormSlice.jsx";
-import { fetchPlaylists } from "../../slices/playlistSlice.js";
+import { fetchMyPlaylists } from "../../slices/playlistSlice.js";
 import { useDispatch } from "react-redux";
 
 function PlayListForm({ onCancel }) {
@@ -16,7 +16,7 @@ function PlayListForm({ onCancel }) {
                 summary: playlistDesc,
             })
         ).then(() => {
-            dispatch(fetchPlaylists());
+            dispatch(fetchMyPlaylists());
         });
         console.log(playlistName);
         console.log(playlistDesc);
@@ -55,7 +55,6 @@ function PlayListForm({ onCancel }) {
                     <div className="flex gap-3 justify-center mt-5">
                         <button
                             type="submit"
-                            onClick={onCancel}
                             className="bg-black justify-center flex text-white p-2 mx-auto rounded-md w-24"
                         >
                             Submit

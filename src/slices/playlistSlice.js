@@ -11,6 +11,14 @@ export const fetchPlaylists = createAsyncThunk(
     }
 );
 
+export const fetchMyPlaylists = createAsyncThunk(
+    "playlists/fetchMyPlaylists",
+    async () => {
+        const data = await makeApiRequest("users/me/playlists");
+        return data;
+    }
+);
+
 export const deleteMovieFromPlaylist = createAsyncThunk(
     "movies/deleteMovieFromPlaylist",
     async ({ movieSlug, playlistSlug }) => {

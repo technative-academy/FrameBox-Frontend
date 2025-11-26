@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchPlaylists } from "../../slices/playlistSlice";
+import { fetchPlaylists, fetchMyPlaylists } from "../../slices/playlistSlice";
 import { deletePlaylist } from "../../slices/playlistSlice";
 import DeleteButton from "../DeleteButton/DeleteButton";
 
@@ -10,19 +10,23 @@ function Carousel() {
     const dispatch = useDispatch();
     const playlists = useSelector((state) => state.playlists.items);
     const status = useSelector((state) => state.playlists.status);
+    const isLoggedInBool = useSelector((state) => state.auth.isLoggedIn);
     const error = useSelector((state) => state.playlists.error);
 
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isHovered, setIsHovered] = useState(false);
     const carouselRef = useRef(null);
     const navigate = useNavigate();
-
     // Fetch playlists from API
     useEffect(() => {
         if (status === "idle") {
-            dispatch(fetchPlaylists());
+            if (isLoggedInBool) {
+                dispatch(fetchMyPlaylists());
+            } else {
+                dispatch(fetchPlaylists());
+            }
         }
-    }, [dispatch, status]);
+    }, [status, isLoggedInBool]);
 
     const getItemsPerView = () => {
         if (window.innerWidth >= 1280) return 5;
@@ -82,7 +86,7 @@ function Carousel() {
 
     const handleDeletePlaylist = (playlistSlug) => {
         dispatch(deletePlaylist(playlistSlug)).then(() =>
-            dispatch(fetchPlaylists())
+            dispatch(fetchMyPlaylists())
         );
     };
 
