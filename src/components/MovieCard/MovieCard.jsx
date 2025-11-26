@@ -36,15 +36,11 @@ function MovieCard({ movie }) {
                 <img
                     src={movie.img}
                     alt={movie.title}
-                    className="w-full h-[400px] sm:h-[450px] object-contain rounded-lg aspect-2/3"
+                    className="w-full h-[300px] sm:h-[380px] object-contain rounded-lg "
                 />
-
-                <div className="absolute top-2 right-16 sm:top-10 sm:right-9 xl:top-4 xl:right-16 z-50">
+                <div className="absolute inset-0 opacity-0 group-hover/card:opacity-100 transition-opacity duration-200">
                     <AddButton onClick={onAddButtonClick} nameOfButton="+" />
                 </div>
-
-                {/* Playlist dropdown menu
-                {showPlaylistMenu && { MovieForm }} */}
             </div>
 
             <div className="mt-0.5 pb-2 group-hover/card:bg-gray-200/20 transition-all duration-300 group-hover/card:opacity-100 rounded-lg">
