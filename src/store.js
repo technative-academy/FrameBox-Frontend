@@ -7,6 +7,7 @@ import usersReducer from "./slices/usersSlice";
 import toastReducer from "./slices/toastSlice";
 import playListFormReducer from "./slices/playListFormSlice";
 import addToPlayListFormReducer from "./slices/addToPlayListFormSlice";
+import addToMovieReducer from "./slices/addMoviesSlice";
 
 const store = configureStore({
     reducer: {
@@ -17,6 +18,7 @@ const store = configureStore({
         toast: toastReducer,
         playListForm: playListFormReducer,
         addToPlayListForm: addToPlayListFormReducer,
+        addMovieForm: addToMovieReducer,
     },
 });
 

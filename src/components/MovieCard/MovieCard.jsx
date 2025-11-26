@@ -47,7 +47,7 @@ function MovieCard({ movie }) {
                     alt={movie.title}
                     className="w-full h-[300px] sm:h-[380px] object-contain rounded-lg "
                 />
-                <div className="absolute inset-0 opacity-0 group-hover/card:opacity-100 transition-opacity duration-200">
+                <div className="absolute sm:inset-0 top-0 left-24 sm:opacity-0 opacity-100 group-hover/card:opacity-100 transition-opacity duration-200">
                     <AddButton onClick={onAddButtonClick} nameOfButton="+" />
                 </div>
                 <div className="absolute top-0 right-6 opacity-0 group-hover/card:opacity-100 transition-opacity duration-200">
