@@ -53,7 +53,7 @@ function MovieForm({ movies, onCancel }) {
     };
 
     return (
-        <div className="absolute z-50 p-5 flex justify-end text-center items-center rounded-lg bg-red-100">
+        <div className="absolute z-50 p-5 flex justify-end text-center items-center rounded-xl bg-zinc-700">
             <div>
                 <h2 className="text-2xl font-bold pb-2">Add to Playlists</h2>
 

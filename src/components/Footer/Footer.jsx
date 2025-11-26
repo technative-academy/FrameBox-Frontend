@@ -1,21 +1,23 @@
 function Footer() {
     return (
-        <div className="bg-[#000000] text-gray-300 p-8">
-            <div className="flex justify-between items-end max-w-7xl mx-auto">
+        <div className="bg-stone-950 text-gray-300 p-8 w-full">
+            <div className="flex justify-between items-end w-full mx-auto">
                 {/* Left Section */}
                 <div className="flex flex-col">
                     <div className="flex gap-6 mb-6">
                         <a
                             href="https://github.com/technative-academy/FrameBox-Frontend"
                             className="text-[#EAB308] hover:underline"
+                            target="_blank"
                         >
-                            Github
+                            Front-End Github
                         </a>
                         <a
                             href="https://github.com/technative-academy/FrameBox-Backend"
                             className="text-[#EAB308] hover:underline"
+                            target="_blank"
                         >
-                            API Github
+                            Back-End API Github
                         </a>
                     </div>
                     <p className="text-gray-300">

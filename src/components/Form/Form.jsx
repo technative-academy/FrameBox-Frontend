@@ -45,9 +45,9 @@ function Form({ type }) {
     };
 
     return (
-        <div className="flex items-center justify-center text-xl lg:mb-16 flex-1">
+        <div className="flex bg-zinc-900 text-white items-center justify-center text-xl lg:mb-16 flex-1">
             <form
-                className="flex flex-col gap-4 mx-auto mt-4 p-8 rounded-2xl shadow-[0px_7px_29px_0px_rgba(100,100,111,0.2)]"
+                className="flex flex-col gap-4 mx-auto mt-4 p-8 rounded-2xl shadow-[0px_7px_29px_0px_rgba(100,100,111,0.2)] text-white"
                 onSubmit={submitHandler}
             >
                 <h1 className="text-2xl text-center">

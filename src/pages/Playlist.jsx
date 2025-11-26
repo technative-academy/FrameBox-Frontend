@@ -92,16 +92,16 @@ function PlaylistDetail() {
     }
 
     return (
-        <div className="bg-amber-50 min-h-screen">
+        <div className=" bg-zinc-900 min-h-screen text-white">
             {/* Header */}
-            <div className="flex items-center gap-4 p-4">
+            <div className="flex  items-center gap-4 p-4">
                 <button
                     onClick={() => navigate(-1)}
-                    className="p-2 bg-transparent text-black hover:scale-110 transition-transform rounded-full"
+                    className="p-2 bg-transparent  hover:scale-110 transition-transform rounded-full"
                 >
                     <ArrowLeft size={24} />
                 </button>
-                <h1 className="text-3xl font-bold">{playlist.playlist_name}</h1>
+                <h1 className="text-4xl font-bold">{playlist.playlist_name}</h1>
             </div>
 
             {/* Playlist Cover and Info */}
@@ -115,18 +115,16 @@ function PlaylistDetail() {
                     <h2 className="text-2xl font-bold mb-2">
                         {playlist.title}
                     </h2>
-                    <p className="text-gray-600">
-                        {playlistMovies.length} movies
-                    </p>
+                    <p className="text-white">{playlistMovies.length} movies</p>
                 </div>
             </div>
 
             {/* Movies List */}
             <div className="p-4">
-                <h3 className="text-2xl font-bold mb-4">
+                <h3 className="text-2xl font-bold mb-4 text-white">
                     Movies in this playlist
                 </h3>
-                <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                <div className="grid text-white grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
                     {playlistMovies.map((movie) => (
                         <div key={movie.slug} className="group cursor-pointer">
                             <div className="relative">

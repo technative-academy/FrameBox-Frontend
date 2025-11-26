@@ -14,7 +14,7 @@ function Home() {
     const buttonName = "Create Playlist";
 
     return (
-        <div className="bg-amber-50 min-h-screen pb-16 sm:pb-8 w-screen">
+        <div className="bg-zinc-900 min-h-screen pb-16 sm:pb-8 w-screen text-white">
             <h2 className="text-2xl sm:text-3xl font-bold mb-2 sm:mb-3 text-center">
                 Trending Now
             </h2>
@@ -35,9 +35,11 @@ function Home() {
                 <div>
                     <div className="relative z-100">
                         {showPlayForm && (
-                            <PlayListForm
-                                onCancel={() => setShowPlayForm(false)}
-                            />
+                            <div className="fixed inset-0 bg-black/50 flex justify-center items-center z-50">
+                                <PlayListForm
+                                    onCancel={() => setShowPlayForm(false)}
+                                />
+                            </div>
                         )}
                     </div>
                     <div className="flex justify-center">
