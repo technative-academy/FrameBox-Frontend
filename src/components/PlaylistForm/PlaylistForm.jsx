@@ -55,13 +55,12 @@ function PlayListForm({ onCancel }) {
                     <div className="flex gap-3 justify-center mt-5">
                         <button
                             type="submit"
-                            onClick={onCancel}
                             className="bg-black justify-center flex text-white p-2 mx-auto rounded-md w-24"
                         >
                             Submit
                         </button>
                         <button
-                            type="sumbit"
+                            type="button"
                             onClick={onCancel}
                             className="px-4 py-2 bg-gray-400 text-white rounded-md"
                         >
