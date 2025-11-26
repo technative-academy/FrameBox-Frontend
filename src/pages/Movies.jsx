@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchMovies } from "../slices/moviesAPISlice.js";
 import MovieCard from "../components/MovieCard/MovieCard.jsx";
+import AddButton from "../components/AddButton/AddButton.jsx";
+import AddMovieForm from "../components/AddMovieForm/AddMovieForm.jsx";
 
 function Movies() {
     const [searchQuery, setSearchQuery] = useState("");
@@ -12,6 +14,12 @@ function Movies() {
     const filteredMovies = movies.filter((movie) =>
         movie.title.toLowerCase().includes(searchQuery.toLowerCase())
     );
+
+    const [showPlayForm, setShowPlayForm] = useState(false);
+
+    const onAddButtonClick = () => {
+        setShowPlayForm((prev) => !prev);
+    };
 
     useEffect(() => {
         if (status === "idle") {
@@ -25,6 +33,26 @@ function Movies() {
             <h1 className="text-3xl font-bold mb-8 text-center">
                 Search your favourite movies
             </h1>
+
+            <div>
+                <div className="flex justify-center mb-4 mt-6">
+                    <AddButton
+                        nameOfButton="Add Movie"
+                        onClick={onAddButtonClick}
+                    />
+                </div>
+                <div>
+                    <div className="relative z-100">
+                        {showPlayForm && (
+                            <div className="fixed inset-0 bg-black/50 flex justify-center items-center z-50">
+                                <AddMovieForm
+                                    onCancel={() => setShowPlayForm(false)}
+                                />
+                            </div>
+                        )}
+                    </div>
+                </div>
+            </div>
 
             {/* Search Bar */}
             <div className="relative text-white w-full max-w-2xl">

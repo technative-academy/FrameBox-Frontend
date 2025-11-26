@@ -14,7 +14,7 @@ export const addPlaylists = createAsyncThunk(
     }
 );
 
-const playListFormSlice = createSlice({
+const addMovieSlice = createSlice({
     name: "playlists",
     initialState: {
         items: [],
@@ -37,4 +37,4 @@ const playListFormSlice = createSlice({
     },
 });
 
-export default playListFormSlice.reducer;
+export default addMovieSlice.reducer;
