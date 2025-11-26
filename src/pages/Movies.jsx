@@ -27,7 +27,7 @@ function Movies() {
             </h1>
 
             {/* Search Bar */}
-            <div className="relative text-white w-full max-w-2xl mb-10">
+            <div className="relative text-white w-full max-w-2xl">
                 <input
                     type="text"
                     placeholder="Search movies..."
@@ -39,7 +39,7 @@ function Movies() {
 
             {/* Movies Grid or No Results Message */}
             {filteredMovies.length > 0 ? (
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 mt-10">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 mt-10">
                     {filteredMovies.map((movie) => (
                         <MovieCard key={movie.id} movie={movie} />
                     ))}

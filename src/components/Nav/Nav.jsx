@@ -34,7 +34,8 @@ function SiteNav({ type }) {
         );
     };
 
-    const displayName = currentUser ? capitalName(currentUser) : "Guest";
+    const displayCapitalName = currentUser ? capitalName(currentUser) : "Guest";
+    const displayName = currentUser ? currentUser : "Guest";
 
     return (
         <header className="flex flex-wrap bg-stone-950 shadow-[0px_7px_29px_0px_rgba(100,100,111,0.2)]">
