@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import AddButton from "../AddButton/AddButton.jsx";
 import MovieForm from "../MovieForm/MovieForm.jsx";
@@ -9,10 +9,13 @@ function MovieCard({ movie }) {
     const [showPlaylistMenu, setShowPlaylistMenu] = useState(false);
     const dispatch = useDispatch();
 
-    const playlists = useSelector((state) => state.playlists.items);
-    const playlistStatus = useSelector((state) => state.playlists.status);
+    const status = useSelector((state) => state.movies.status);
 
-    const buttonName = "Add to Playlist";
+    useEffect(() => {
+        if (status === "deleted") {
+            dispatch(fetchMovies());
+        }
+    }, [dispatch, status]);
 
     const onAddButtonClick = () => {
         setShowPlaylistMenu(!showPlaylistMenu);
