@@ -47,14 +47,11 @@ function MovieCard({ movie }) {
                 {showPlaylistMenu && { MovieForm }} */}
             </div>
 
-            <div className="mt-0.5 pb-4 ">
+            <div className="mt-0.5 pb-2 group-hover/card:bg-gray-200/20 transition-all duration-300 group-hover/card:opacity-100 rounded-lg">
                 <h3 className="text-base sm:text- text-center font-bold text-white">
                     {movie.title}
                 </h3>
-                <div className="absolute left-0 right-0 bottom-0 h-10 lg:top-[100] lg:right-9 lg:left-9 bg-gray-500/0 group-hover/card:bg-gray-200/20 transition-all duration-300 rounded-lg opacity-0 group-hover/card:opacity-100"></div>
             </div>
-
-            {/* Hover overlay */}
         </div>
     );
 }
