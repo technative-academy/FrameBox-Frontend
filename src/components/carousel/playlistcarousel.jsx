@@ -123,7 +123,7 @@ function Carousel() {
                                 className="flex-none w-[75vw] sm:w-1/2 md:w-1/3 lg:w-1/5 snap-start first:snap-center last:snap-center "
                             >
                                 <div
-                                    className="relative group/card cursor-pointer"
+                                    className="relative cursor-pointer group/card"
                                     onClick={(event) =>
                                         handlePlaylistClick(playlist.slug)
                                     }
@@ -134,10 +134,13 @@ function Carousel() {
                                             alt={playlist.title}
                                             className="w-full aspect-square object-cover rounded-lg"
                                         />
-                                        <h3 className="text-base sm:text-lg font-bold text-white text-center">
-                                            {playlist.title}
-                                        </h3>
-                                        <div className="absolute inset-0 bg-gray-500/0 transition-all duration-300 rounded-lg opacity-0 group-hover:opacity-100">
+                                        <div className="mt-0.5 pb-2 group-hover/card:bg-gray-200/20 transition-all duration-300 group-hover/card:opacity-100 rounded-lg">
+                                            <h3 className="text-base sm:text-lg font-bold text-green-400 text-center">
+                                                {playlist.title}
+                                            </h3>
+                                        </div>
+
+                                        <div className="absolute inset-0 opacity-0 group-hover/card:opacity-100 transition-opacity duration-200">
                                             <DeleteButton
                                                 onClick={() =>
                                                     handleDeletePlaylist(
@@ -149,8 +152,6 @@ function Carousel() {
                                         </div>
                                     </div>
                                     <div className="mt-4 p-2"></div>
-                                    {/* Hover overlay covering both image and text */}
-                                    <div className="absolute inset-0 bg-gray-500/0 group-hover/card:bg-gray-500/20 transition-all duration-300 rounded-lg opacity-0 group-hover/card:opacity-100"></div>
                                 </div>
                             </div>
                         ))}
