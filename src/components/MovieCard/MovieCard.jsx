@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import AddButton from "../AddButton/AddButton.jsx";
 import MovieForm from "../MovieForm/MovieForm.jsx";
+import { deleteMovies, fetchMovies } from "../../slices/moviesAPISlice.js";
+import DeleteButton from "../DeleteButton/DeleteButton.jsx";
 
 function MovieCard({ movie }) {
     const [showPlaylistMenu, setShowPlaylistMenu] = useState(false);
@@ -14,6 +16,10 @@ function MovieCard({ movie }) {
 
     const onAddButtonClick = () => {
         setShowPlaylistMenu(!showPlaylistMenu);
+    };
+
+    const onDeleteButtonClick = (movieSlug) => {
+        dispatch(deleteMovies(movieSlug)).then(() => dispatch(fetchMovies()));
     };
 
     return (
@@ -40,6 +46,12 @@ function MovieCard({ movie }) {
                 />
                 <div className="absolute inset-0 opacity-0 group-hover/card:opacity-100 transition-opacity duration-200">
                     <AddButton onClick={onAddButtonClick} nameOfButton="+" />
+                </div>
+                <div className="absolute top-0 right-6 opacity-0 group-hover/card:opacity-100 transition-opacity duration-200">
+                    <DeleteButton
+                        onClick={() => onDeleteButtonClick(movie.slug)}
+                        nameOfButton="x"
+                    />
                 </div>
             </div>
 

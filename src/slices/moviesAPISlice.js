@@ -6,6 +6,16 @@ export const fetchMovies = createAsyncThunk("movies/fetchMovies", async () => {
     return data;
 });
 
+export const deleteMovies = createAsyncThunk(
+    "movies/deleteMovies",
+    async (movieSlug) => {
+        await makeApiRequest(`movies/${movieSlug}`, {
+            method: "DELETE",
+        });
+        return movieSlug;
+    }
+);
+
 const moviesAPISlice = createSlice({
     name: "movies",
     initialState: {
@@ -27,6 +37,12 @@ const moviesAPISlice = createSlice({
             .addCase(fetchMovies.rejected, (state, action) => {
                 state.status = "failed";
                 state.error = action.error.message;
+            })
+            .addCase(deleteMovies.fulfilled, (state, action) => {
+                state.status = "deleted";
+                state.items = state.items.filter(
+                    (movie) => movie.slug !== action.payload
+                );
             });
     },
 });
